@@ -1,2 +1,3 @@
-# 50-dias-codigo
-Um repositório  para o projeto de 50 dias de código
+<h1 align="center"> 🚀 50 Dias de Código  </h1>
+
+
