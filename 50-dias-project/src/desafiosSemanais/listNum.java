@@ -1,14 +1,25 @@
 package desafiosSemanais;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class listNum {
 
     public static void main (String[] args) {
-        int[] nums;
 
         Scanner scanner = new Scanner(System.in);
 
-        int num = scanner.nextInt(); //Dispara um erro caso o usuário tente usar um tipo diferente de inteiro
+        System.out.print("Digite quantos números deseja adicionar: ");
+        int qntNums = scanner.nextInt();
+
+        List<Integer> nums = new ArrayList<>();
+
+        for (int i = 0; i < qntNums; i++) {
+            System.out.print("Digite o " + (i + 1) + "º número: ");
+            nums.add(scanner.nextInt());
+        }
+
+        System.out.println(nums);
     }
 }
