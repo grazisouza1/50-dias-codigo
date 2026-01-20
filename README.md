@@ -22,3 +22,28 @@
 <br/>
 
 <img width="989" height="212" alt="Frame 3 (3)" src="https://github.com/user-attachments/assets/2fd8cb7f-c734-497d-8913-da99dae7d2b6" />
+
+<br/>
+
+<h2 align="center"> 🎯 Sobre o Desafio  </h2>
+  <p align="center">O desafio consiste em um período de constante estudo de uma linguagem escolhida para apronfundar conhecimentos em lógica de programação (especialmente POO). O projeto conta com <strong>desafios semanais</strong>(totalizando 7 desafios), que abordarão diferentes e importantes temas no aprendizado de uma linguagem</p>
+
+<br/>
+
+### ⚡ Semana 1: Fundamentos da sua linguagem (sintaxe, controle de fluxo, funções) 
+  - <strong>Objetivo: </strong> Criar um programa que _leia uma lista de números_ informados pelo usuário e calcula a:
+&nbsp;
+
+✓ Soma
+&nbsp;
+
+✓ Média
+&nbsp;
+
+✓ Maior número
+&nbsp;
+
+✓ Menos número
+&nbsp;
+
+exibindo os resultados para o usuário de forma organizada e formatada
