@@ -12,15 +12,22 @@ public class ListNum {
         for (int i = 0; i < nums.size(); i++){
             result += this.nums.get(i);
         }
+
+        System.out.print("- A soma dos números inseridos é: ");
         return result;
     }
 
     public double media() {
-        double result = this.soma();
+        double result = 0;
+        for (int i = 0; i < nums.size(); i++){
+            result += this.nums.get(i);
+        }
+
         int qnt = this.nums.size();
 
         result = result / qnt;
 
+        System.out.print("- A média dos números inseridos é: ");
         return result;
     }
 
@@ -33,6 +40,7 @@ public class ListNum {
             }
         }
 
+        System.out.print("- O maior dos números inseridos é: ");
         return result;
     }
 
@@ -45,6 +53,7 @@ public class ListNum {
            }
        }
 
+       System.out.print("- O menor dos números inseridos é: ");
        return result;
     }
 
@@ -53,19 +62,28 @@ public class ListNum {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("========== Calculadora de Lista ========== ");
+        System.out.println("Insira a quantidade de números desejada e o programa retornará a soma, média, o maior e o menor \n");
         System.out.print("Digite quantos números deseja adicionar: ");
         int qntNums = scanner.nextInt();
+
+        if (qntNums > 1) {
+            System.out.println("\nA lista vai conter " + qntNums + " números \n");
+        }
 
         for (int i = 0; i < qntNums; i++) {
             System.out.print("Digite o " + (i + 1) + "º número: ");
             user1.nums.add(scanner.nextDouble());
         }
 
-        System.out.println(user1.nums);
+        System.out.println(" ");
+
         System.out.println(user1.soma());
         System.out.println(user1.media());
         System.out.println(user1.maior());
         System.out.println(user1.menor());
+
+        System.out.println("\nPrograma Encerrado!");
 
         scanner.close();
     }
