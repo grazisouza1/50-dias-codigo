@@ -30,6 +30,10 @@
 
 <br/>
 
+---
+
+<br/>
+
 ### ⚡ Semana 1: Fundamentos da sua linguagem (sintaxe, controle de fluxo, funções) 
   - <strong>Objetivo: </strong> Criar um programa que _leia uma lista de números_ informados pelo usuário e calcula a:
 &nbsp;
@@ -47,3 +51,19 @@
 &nbsp;
 
 exibindo os resultados para o usuário de forma organizada e formatada
+
+| Dia | Task | Tempo de Duração |
+|-----|------|------------------|
+| 1   | • Criação do projeto;<br/>• Iniciando o uso de Scanner;<br/>• Criação do README. | 20 minutos |
+| 2   | • Adição de entrada de números para o usuário;<br/>• Atualização do README. | 40 minutos |
+| 3   | • Criação de métodos para funcionalidades exigidas;<br/>• Adição de mensagens para o usuário no output;<br/>• Atualização do README. | 1 hora e 20 minutos |
+| 4   |
+| 5   |
+| 6   |
+| 7   |
+
+<br/>
+
+---
+
+<br/>
