@@ -59,22 +59,43 @@ public class ListNum {
 
     public static void main (String[] args) {
         ListNum user1 = new ListNum();
+        int qntNums = 0;
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("========== Calculadora de Lista ========== ");
         System.out.println("Insira a quantidade de números desejada e o programa retornará a soma, média, o maior e o menor \n");
-        System.out.print("Digite quantos números deseja adicionar: ");
-        int qntNums = scanner.nextInt();
+
+        do {
+            System.out.print("Digite quantos números deseja adicionar: ");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("\nEntrada inválida, digite novamente\n");
+                scanner.next();
+                continue;
+            }
+
+            qntNums = scanner.nextInt();
+
+            if(qntNums < 1) {
+                System.out.println("\nEntrada inválida, digite novamente\n");
+            }
+            
+        } while (qntNums < 1);
+
 
         if (qntNums > 1) {
             System.out.println("\nA lista vai conter " + qntNums + " números \n");
-        }
-
-        for (int i = 0; i < qntNums; i++) {
-            System.out.print("Digite o " + (i + 1) + "º número: ");
+            for (int i = 0; i < qntNums; i++) {
+                System.out.print("Digite o " + (i + 1) + "º número: ");
+                user1.nums.add(scanner.nextDouble());
+            }
+        } else {
+            System.out.println("\nA lista vai conter 1 número");
+            System.out.print("\nDigite o número: ");
             user1.nums.add(scanner.nextDouble());
         }
+
 
         System.out.println(" ");
 
