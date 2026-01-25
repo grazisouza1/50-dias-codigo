@@ -1,5 +1,9 @@
 package desafiosSemanais;
 
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -64,15 +68,66 @@ public class ListNum {
     }
 
     public static void main (String[] args) {
-        //Cria um objeto usuário para rodar o projeto
+        //Criando o principal, um frame
+        JFrame frame = new JFrame("Calculadora de Lista");
+        //Configurando seu tamanho
+        frame.setSize(500, 600);
+        //Deixando ele no centro
+        frame.setLocationRelativeTo(null);
+
+        //Criando e configurando o tamanho do painel, que vai dentro do frame
+        JPanel panel = new JPanel();
+        panel.setSize(500, 300);
+
+        //Colocando um titulo no painel
+        TitledBorder borderTitle = BorderFactory.createTitledBorder(
+                BorderFactory.createEtchedBorder(),
+                "Calcule sua lista de números!",
+                TitledBorder.CENTER,
+                TitledBorder.TOP,
+                Font.getFont("Arial"),
+                Color.black
+        );
+        panel.setBorder(borderTitle);
+
+        //ELEMENTOS
+        JLabel qntLabel = new JLabel("Quantos números deseja na lista? ");
+        JTextField qntTF = new JTextField(1);
+        JButton botaoAdd = new JButton("Adicionar");
+
+        JLabel numsLabel = new JLabel("Adicione os números: ");
+        List<JTextField> campos = new ArrayList<>();
+
+        JButton botaoCalcular = new JButton("Calcular");
+
+        botaoAdd.addActionListener(e -> {
+            int qntValue = Integer.parseInt(qntTF.getText());
+            for (int i = 0; i < qntValue; i++) {
+                JTextField tf = new JTextField();
+                campos.add(tf);
+                panel.add(tf);
+            }
+            System.out.println(qntValue);
+        });
+
+        //Adicionando elementos ao painel e adicionando o painel ao frame no final
+        panel.add(qntLabel);
+        panel.add(qntTF);
+        panel.add(botaoAdd);
+        panel.add(numsLabel);
+        panel.add(botaoCalcular);
+        frame.add(panel);
+
+        //Configurando o fechamento de aba e deixando o painel visível
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
+        /* //Cria um objeto usuário para rodar o projeto
         ListNum user1 = new ListNum();
         int qntNums = 0;
 
         //Cria um objeto para aceitar entrada do usuário
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("========== Calculadora de Lista ========== ");
-        System.out.println("Insira a quantidade de números desejada e o programa retornará a soma, média, o maior e o menor \n");
 
         //Roda a parte do prgrama que pede números ao usuário enquanto ele adicionar entradas inválidas
         do {
@@ -107,9 +162,6 @@ public class ListNum {
             user1.nums.add(scanner.nextDouble());
         }
 
-
-        System.out.println(" ");
-
         //Chama todas as funções
         System.out.println(user1.soma());
         System.out.println(user1.media());
@@ -119,6 +171,6 @@ public class ListNum {
         System.out.println("\nPrograma Encerrado!");
 
         //Fecha o objeto de leitura de entrada do usuário
-        scanner.close();
+        scanner.close(); */
     }
 }
