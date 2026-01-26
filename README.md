@@ -60,7 +60,7 @@ exibindo os resultados para o usuário de forma organizada e formatada
 | 4   | • Tratamento de possíveis erros de entrada;<br/>• Atualização do README. | 40 minutos |
 | 5   | • Adicionando comentários de explicação no código;<br/>• Corrigindo linhas;<br/>• Atualização README. | 30 minutos |
 | 6   | • Início de construção do front end;<br/>• Estudos sobre Swing;<br/>• Atualização do README | 1 hora e 40 minutos |
-| 7   |
+| 7   | • Adicionando interface com Java Swing;<br/> • Continuação dos estudos de Java Swing;<br/>• Tratamento de erros de validação de entrada;<br/>• Atualização do README. | 2 horas |
 
 <br/>
 
