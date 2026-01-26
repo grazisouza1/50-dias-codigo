@@ -1,12 +1,10 @@
-package desafiosSemanais;
+package semana1;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ListNum {
     // Cria um array de números do tipo Double
@@ -62,7 +60,7 @@ public class ListNum {
        return result;
     }
 
-    public static void main (String[] args) {
+    public static void test (String[] args) {
         ListNum user1 = new ListNum();
 
         //Criando o principal, um frame
@@ -81,7 +79,6 @@ public class ListNum {
         JPanel painelQntNums = new JPanel();
         JPanel painelAddNums = new JPanel();
         JPanel painelResults = new JPanel();
-
 
         painelControle.setLayout(new BoxLayout(painelControle, BoxLayout.Y_AXIS));
         painelControle.setSize(500, 300);
@@ -189,7 +186,7 @@ public class ListNum {
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(
                             painelControle,
-                            "Valor inválido: " + texto,
+                            "Valor inválido: " + texto ,
                             "Erro",
                             JOptionPane.ERROR_MESSAGE
                     );
