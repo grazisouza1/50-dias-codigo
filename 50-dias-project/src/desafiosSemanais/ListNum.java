@@ -116,20 +116,51 @@ public class ListNum {
         JButton botaoCalcular = new JButton("Calcular");
 
         botaoAdd.addActionListener(e -> {
+            String texto = qntTF.getText().trim();
+
+            if (texto.isEmpty()) {
+                JOptionPane.showMessageDialog(
+                        painelControle,
+                        "Insira um número no campo.",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
+            int qntValue;
+
+            try {
+                qntValue = Integer.parseInt(texto);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(
+                        painelControle,
+                        "Digite apenas números inteiros.",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
+            if (qntValue <= 0) {
+                JOptionPane.showMessageDialog(
+                        painelControle,
+                        "O número deve ser maior que zero.",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
             painelAddNums.removeAll();
             campos.clear();
 
-            int qntValue = Integer.parseInt(qntTF.getText().trim());
+            qntValue = Integer.parseInt(qntTF.getText().trim());
 
             for (int i = 0; i < qntValue; i++) {
-                JTextField tf = new JTextField(10);
+                JTextField tf = new JTextField(8);
                 campos.add(tf);
-
-                JPanel linha = new JPanel(new FlowLayout(FlowLayout.LEFT));
-                linha.setPreferredSize(new Dimension(30, 30));
-                linha.add(tf);
-
-                painelAddNums.add(linha);
+                painelAddNums.add(tf);
             }
 
             painelControle.revalidate();
@@ -140,8 +171,30 @@ public class ListNum {
             user1.nums.clear();
 
             for (JTextField tf : campos) {
-                double valor = Double.parseDouble(tf.getText().trim());
-                user1.nums.add(valor);
+                String texto = tf.getText().trim();
+
+                if (texto.isEmpty()) {
+                    JOptionPane.showMessageDialog(
+                            painelControle,
+                            "Todos os campos devem ser preenchidos",
+                            "Erro",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    return;
+                }
+
+                try {
+                    double valor = Double.parseDouble(texto);
+                    user1.nums.add(valor);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(
+                            painelControle,
+                            "Valor inválido: " + texto,
+                            "Erro",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                    return;
+                }
             }
 
             double soma = user1.soma();
