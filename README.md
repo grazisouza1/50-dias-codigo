@@ -54,16 +54,51 @@ exibindo os resultados para o usuário de forma organizada e formatada
 
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
-| 1   | • Criação do projeto;<br/>• Iniciando o uso de Scanner;<br/>• Criação do README. | 20 minutos |
+| 1   | • Criação do projeto;<br/>• Início do uso de Scanner;<br/>• Criação do README. | 20 minutos |
 | 2   | • Adição de entrada de números para o usuário;<br/>• Atualização do README. | 40 minutos |
 | 3   | • Criação de métodos para funcionalidades exigidas;<br/>• Adição de mensagens para o usuário no output;<br/>• Atualização do README. | 1 hora e 20 minutos |
 | 4   | • Tratamento de possíveis erros de entrada;<br/>• Atualização do README. | 40 minutos |
-| 5   | • Adicionando comentários de explicação no código;<br/>• Corrigindo linhas;<br/>• Atualização README. | 30 minutos |
+| 5   | • Adição de comentários de explicação no código;<br/>• Correção de linhas;<br/>• Atualização README. | 30 minutos |
 | 6   | • Início de construção do front end;<br/>• Estudos sobre Swing;<br/>• Atualização do README | 1 hora e 40 minutos |
-| 7   | • Adicionando interface com Java Swing;<br/> • Continuação dos estudos de Java Swing;<br/>• Tratamento de erros de validação de entrada;<br/>• Atualização do README. | 2 horas |
+| 7   | • Adição de interface com Java Swing;<br/> • Continuação dos estudos de Java Swing;<br/>• Tratamento de erros de validação de entrada;<br/>• Atualização do README. | 2 horas |
 
 <br/>
 
 ---
 
 <br/>
+
+### ⚡ Semana 2: Estruturas e POO/funções avançadas. 
+  - <strong>Objetivo: </strong> Criar um programa de gerenciamento de tarefas em memória (mini CRUD), que permita ao usuário:
+&nbsp;
+
+✓ Criar tarefas;
+&nbsp;
+
+✓ Listar tarefas cadastradas;
+&nbsp;
+
+✓ Atualizar uma tarefa existente;
+&nbsp;
+
+✓ Remover uma tarefa;
+&nbsp;
+
+✓ Buscar uma tarefa pelo seu identificador;
+&nbsp;
+
+Cada tarefa deve possuir, no mínimo:
+
+ID (único)
+Título
+Status (ex.: pendente, concluída)
+
+| Dia | Task | Tempo de Duração |
+|-----|------|------------------|
+| 1   | • Ajuste de ambiente;<br/>• Início da estrutura do projeto;<br/>• Atualização do README. | 30 minutos |
+| 2   | 
+| 3   | 
+| 4   | 
+| 5   | 
+| 6   | 
+| 7   | 
