@@ -19,7 +19,6 @@ public class ListNum {
             result += this.nums.get(i);
         }
 
-        System.out.print("- A soma dos números inseridos é: ");
         return result;
     }
 
@@ -33,7 +32,6 @@ public class ListNum {
 
         result = result / qnt;
 
-        System.out.print("- A média dos números inseridos é: ");
         return result;
     }
 
@@ -48,7 +46,6 @@ public class ListNum {
             }
         }
 
-        System.out.print("- O maior dos números inseridos é: ");
         return result;
     }
 
@@ -62,22 +59,35 @@ public class ListNum {
                result = this.nums.get(i);
            }
        }
-
-       System.out.print("- O menor dos números inseridos é: ");
        return result;
     }
 
     public static void main (String[] args) {
+        ListNum user1 = new ListNum();
+
         //Criando o principal, um frame
         JFrame frame = new JFrame("Calculadora de Lista");
+        frame.setLayout(new BorderLayout());
+
         //Configurando seu tamanho
         frame.setSize(500, 600);
+
         //Deixando ele no centro
         frame.setLocationRelativeTo(null);
 
-        //Criando e configurando o tamanho do painel, que vai dentro do frame
-        JPanel panel = new JPanel();
-        panel.setSize(500, 300);
+        //Criando e configurando o tamanho dos paineis, que vão dentro do frame
+        JPanel painelPrincipal = new JPanel(new BorderLayout());
+        JPanel painelControle = new JPanel();
+        JPanel painelQntNums = new JPanel();
+        JPanel painelAddNums = new JPanel();
+        JPanel painelResults = new JPanel();
+
+
+        painelControle.setLayout(new BoxLayout(painelControle, BoxLayout.Y_AXIS));
+        painelControle.setSize(500, 300);
+        painelQntNums.setLayout(new FlowLayout(FlowLayout.LEFT));
+        painelAddNums.setLayout(new GridLayout(0, 4, 5, 5));
+        painelResults.setLayout(new BoxLayout(painelResults, BoxLayout.Y_AXIS));
 
         //Colocando um titulo no painel
         TitledBorder borderTitle = BorderFactory.createTitledBorder(
@@ -88,51 +98,86 @@ public class ListNum {
                 Font.getFont("Arial"),
                 Color.black
         );
-        panel.setBorder(borderTitle);
+
+        painelControle.setBorder(borderTitle);
 
         //ELEMENTOS
         JLabel qntLabel = new JLabel("Quantos números deseja na lista? ");
-        JTextField qntTF = new JTextField(1);
+        JTextField qntTF = new JTextField(5);
         JButton botaoAdd = new JButton("Adicionar");
 
-        JLabel numsLabel = new JLabel("Adicione os números: ");
         List<JTextField> campos = new ArrayList<>();
+
+        JLabel somaLabel = new JLabel();
+        JLabel mediaLabel = new JLabel();
+        JLabel maiorLabel = new JLabel();
+        JLabel menorLabel = new JLabel();
 
         JButton botaoCalcular = new JButton("Calcular");
 
         botaoAdd.addActionListener(e -> {
-            int qntValue = Integer.parseInt(qntTF.getText());
+            painelAddNums.removeAll();
+            campos.clear();
+
+            int qntValue = Integer.parseInt(qntTF.getText().trim());
+
             for (int i = 0; i < qntValue; i++) {
-                JTextField tf = new JTextField();
+                JTextField tf = new JTextField(10);
                 campos.add(tf);
-                panel.add(tf);
+
+                JPanel linha = new JPanel(new FlowLayout(FlowLayout.LEFT));
+                linha.setPreferredSize(new Dimension(30, 30));
+                linha.add(tf);
+
+                painelAddNums.add(linha);
             }
-            System.out.println(qntValue);
+
+            painelControle.revalidate();
+            painelControle.repaint();
+        });
+
+        botaoCalcular.addActionListener(e -> {
+            user1.nums.clear();
+
+            for (JTextField tf : campos) {
+                double valor = Double.parseDouble(tf.getText().trim());
+                user1.nums.add(valor);
+            }
+
+            double soma = user1.soma();
+            double media = user1.media();
+            double maior = user1.maior();
+            double menor = user1.menor();
+
+            somaLabel.setText("A soma dos números é: " + soma);
+            mediaLabel.setText("A média dos números é: " + media);
+            maiorLabel.setText("O maior dos números é: " + maior);
+            menorLabel.setText("O menor dos números é: " + menor);
         });
 
         //Adicionando elementos ao painel e adicionando o painel ao frame no final
-        panel.add(qntLabel);
-        panel.add(qntTF);
-        panel.add(botaoAdd);
-        panel.add(numsLabel);
-        panel.add(botaoCalcular);
-        frame.add(panel);
+        painelQntNums.add(qntLabel);
+        painelQntNums.add(qntTF);
+        painelQntNums.add(botaoAdd);
+
+        painelResults.add(somaLabel);
+        painelResults.add(mediaLabel);
+        painelResults.add(maiorLabel);
+        painelResults.add(menorLabel);
+
+        painelControle.add(painelQntNums);
+        painelControle.add(painelAddNums);
+        painelControle.add(painelResults);
+        painelControle.add(botaoCalcular);
+
+        painelPrincipal.add(painelControle, BorderLayout.NORTH);
 
         //Configurando o fechamento de aba e deixando o painel visível
+        frame.setContentPane(painelPrincipal);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        /* //Cria um objeto usuário para rodar o projeto
-        ListNum user1 = new ListNum();
-        int qntNums = 0;
-
-        //Cria um objeto para aceitar entrada do usuário
-        Scanner scanner = new Scanner(System.in);
-
-        //Roda a parte do prgrama que pede números ao usuário enquanto ele adicionar entradas inválidas
-        do {
-            System.out.print("Digite quantos números deseja adicionar: ");
-
+        /*
             //Se a entrada não for um número, o erro informará que esse é o problema
             if (!scanner.hasNextInt()) {
                 System.out.println("\nA entrada deve ser um número, digite novamente\n");
@@ -140,37 +185,11 @@ public class ListNum {
                 continue;
             }
 
-            qntNums = scanner.nextInt();
-
             //Se o número for menor que 1, o erro também informará isso ao usuário
             if(qntNums < 1) {
                 System.out.println("\nO número deve ser maior do que 0, digite novamente\n");
             }
-        //Quando o número for maior que 1, o programa para de perguntar ao usuário, e segue para a próxima etapa
-        } while (qntNums < 1);
+         */
 
-        //Mostra mensagens diferentes caso a quantidade de números seja 1 ou maior que isso
-        if (qntNums > 1) {
-            System.out.println("\nA lista vai conter " + qntNums + " números \n");
-            for (int i = 0; i < qntNums; i++) {
-                System.out.print("Digite o " + (i + 1) + "º número: ");
-                user1.nums.add(scanner.nextDouble());
-            }
-        } else {
-            System.out.println("\nA lista vai conter 1 número");
-            System.out.print("\nDigite o número: ");
-            user1.nums.add(scanner.nextDouble());
-        }
-
-        //Chama todas as funções
-        System.out.println(user1.soma());
-        System.out.println(user1.media());
-        System.out.println(user1.maior());
-        System.out.println(user1.menor());
-
-        System.out.println("\nPrograma Encerrado!");
-
-        //Fecha o objeto de leitura de entrada do usuário
-        scanner.close(); */
     }
 }
