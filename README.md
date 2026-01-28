@@ -96,7 +96,7 @@ Status (ex.: pendente, concluída)
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
 | 1   | • Ajuste de ambiente;<br/>• Início da estrutura do projeto;<br/>• Atualização do README. | 30 minutos |
-| 2   | 
+| 2   | • Criação do menu para o terminal;<br/>• Tratamento de erros de entrada do usuário;<br/>• Atualização do README. | 1 hora e 30 minutos |
 | 3   | 
 | 4   | 
 | 5   | 
