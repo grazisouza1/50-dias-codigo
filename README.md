@@ -97,7 +97,7 @@ Status (ex.: pendente, concluída)
 |-----|------|------------------|
 | 1   | • Ajuste de ambiente;<br/>• Início da estrutura do projeto;<br/>• Atualização do README. | 30 minutos |
 | 2   | • Criação do menu para o terminal;<br/>• Tratamento de erros de entrada do usuário;<br/>• Atualização do README. | 1 hora e 30 minutos |
-| 3   | 
+| 3   | • Estudo/Pesquisa sobre menu interativo;<br/>• Iniciando criação das funções;<br/>• Atualização do README | 2 horas |
 | 4   | 
 | 5   | 
 | 6   | 
