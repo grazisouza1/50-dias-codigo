@@ -18,26 +18,50 @@ public class Crud {
         System.out.print("\nTarefa " + tarefa.titulo + " adicionada!\n");
     }
 
-    public void verTarefas(){
-        System.out.println("======== TAREFAS ========\n");
-        for (int i = 0; i < tarefas.size(); i++) {
-            Tarefa tarefa = tarefas.get(i);
-            System.out.println("ID: " + tarefa.id);
+    public void buscarTarefa(){
+        System.out.println("A lista tem " + tarefas.size() + " itens");
+        System.out.print("Insira o ID da tarefa que deseja buscar: ");
+        String idEntrada = scanner.nextLine();
+
+        try {
+            int idTarefa = Integer.parseInt(idEntrada);
+
+            if(idTarefa > tarefas.size()) {
+                System.out.println("Insira um número válido");
+            }
+
+            Tarefa tarefa = tarefas.get(idTarefa - 1);
+
+            System.out.println("\nID: " + tarefa.id);
             System.out.println("Título: " + tarefa.titulo);
 
             String status = (tarefa.status) ? "Concluída" : "Pendente";
             System.out.println("Status: " + status);
             System.out.println("\n__________________________\n");
 
+        } catch (NumberFormatException e) {
+            System.out.println("\nFormato inválido\n");
         }
+
     }
 
     public void editarTarefa(){
+        System.out.print("Selecione o ID da tarefa que deseja atualizar: ");
+        String idEntrada = scanner.nextLine();
 
+        try {
+            int idTarefa = Integer.parseInt(idEntrada);
+            Tarefa tarefa = tarefas.get(idTarefa - 1);
+            tarefa.status = !tarefa.status;
+
+            System.out.println("\nTarefa " + idTarefa + " atualizada");
+        } catch (NumberFormatException e) {
+            System.out.println("Formato inválido\n");
+        }
     }
 
     public void deletarTarefa() {
-        verTarefas();
+        buscarTarefa();
 
         System.out.print("Insira o ID da tarefa que deseja remover: ");
         int idDeletar = scanner.nextInt();
@@ -59,7 +83,7 @@ public class Crud {
         Scanner scanner = new Scanner(System.in);
 
         while(true) {
-            System.out.println("======= Lista de Tarefas =======\n");
+            System.out.println("\n======= Lista de Tarefas =======\n");
             System.out.println("1. Criar nova tarefa");
             System.out.println("2. Ver tarefas");
             System.out.println("3. Editar tarefa");
@@ -84,7 +108,7 @@ public class Crud {
                         break;
                     case 2:
                         System.out.println("\nVocê selecionou 'Ver tarefas'\n");
-                        listaTarefas.verTarefas();
+                        listaTarefas.buscarTarefa();
                         break;
                     case 3:
                         System.out.println("\nVocê selecionou 'Editar tarefa'\n");
