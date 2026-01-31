@@ -99,6 +99,6 @@ Status (ex.: pendente, concluída)
 | 2   | • Criação do menu para o terminal;<br/>• Tratamento de erros de entrada do usuário;<br/>• Atualização do README. | 1 hora e 30 minutos |
 | 3   | • Estudo/Pesquisa sobre menu interativo;<br/>• Iniciando criação das funções;<br/>• Atualização do README | 2 horas |
 | 4   | • Finalizar funções;<br/>• Ajuste de busca por id;<br/>• Estudo sobre classes;<br/>• Atualização do README | 40 minutos |
-| 5   |
+| 5   | • Tratando erros de entrada;<br/>• Atualização do README. | 30 minutos |
 | 6   | 
 | 7   | 
