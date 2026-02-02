@@ -100,5 +100,5 @@ Status (ex.: pendente, concluída)
 | 3   | • Estudo/Pesquisa sobre menu interativo;<br/>• Iniciando criação das funções;<br/>• Atualização do README | 2 horas |
 | 4   | • Finalizar funções;<br/>• Ajuste de busca por id;<br/>• Estudo sobre classes;<br/>• Atualização do README | 40 minutos |
 | 5   | • Tratando erros de entrada;<br/>• Atualização do README. | 30 minutos |
-| 6   | • Estudando o uso de try catch, objetos(variáveis de instância e métodos);<br/>• Atualização do README.<br/> | 40 minutos |
-| 7   | 
+| 6   | • Estudo do uso de try catch, objetos(variáveis de instância e métodos);<br/>• Atualização do README.<br/> | 40 minutos |
+| 7   | • Finalizando e organizando projeto;<br/>• Correção de pequenos bugs;<br/>• Atualização do README.<br/> | 30 minutos |
