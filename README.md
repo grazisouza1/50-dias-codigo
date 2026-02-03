@@ -102,3 +102,47 @@ Status (ex.: pendente, concluída)
 | 5   | • Tratando erros de entrada;<br/>• Atualização do README. | 30 minutos |
 | 6   | • Estudo do uso de try catch, objetos(variáveis de instância e métodos);<br/>• Atualização do README.<br/> | 40 minutos |
 | 7   | • Finalizando e organizando projeto;<br/>• Correção de pequenos bugs;<br/>• Atualização do README.<br/> | 30 minutos |
+
+<br/>
+
+---
+
+<br/>
+
+### ⚡ Semana 3: Arquivos e APIs (requisições HTTP) 
+  - <strong>Objetivo: </strong>
+
+✓ Consumir uma API pública (Você pode escolher uma API pública para trabalhar);
+&nbsp;
+
+✓ Exibir dados organizados para o usuário. O programa deve buscar dados na API e mostrar de forma clara, por exemplo:
+Nome, descrição, datas, contagens, etc.
+Exibir em lista com formatação (CLI) ou cards/tabela (front);
+&nbsp;
+
+✓ Permita busca/filtro pelo usuário:
+- Buscar por termo
+- Filtrar por status categoria ou tipo
+- Exibir detalhes de um item selecionado
+&nbsp;
+
+> 💡 Para se destacar, implemente 2 ou mais itens abaixo:
+> - Tratamento de erros (404, 500, sem internet, timeout);
+> - Loading/feedback (mensagem “carregando…” antes do retorno);
+> - Paginação (ex.: mostrar 10 por vez e “próxima página”);
+> - Ordenação (por nome, por data, por quantidade, etc.);
+> - Cache simples em memória (não repetir requisição se já buscou);
+> - Testes para funções de transformação de dados;
+> - Env vars (se usar API com token);
+> - README caprichado com prints e passo a passo
+
+| Dia | Task | Tempo de Duração |
+|-----|------|------------------|
+| 1   | • Preparação do ambiente e inicio da aplicação; <br/>• Atualização do README. | 30 minutos |
+| 2   |
+| 3   | 
+| 4   | 
+| 5   | 
+| 6   | 
+| 7   | 
+
