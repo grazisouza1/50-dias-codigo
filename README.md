@@ -139,7 +139,7 @@ Exibir em lista com formatação (CLI) ou cards/tabela (front);
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
 | 1   | • Preparação do ambiente e inicio da aplicação; <br/>• Atualização do README. | 30 minutos |
-| 2   |
+| 2   | • Início de testes da API;<br/>• Construção de arquivos;<br/>• Atualização do README. | 1 hora |
 | 3   | 
 | 4   | 
 | 5   | 
