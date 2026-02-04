@@ -2,18 +2,16 @@ package com.semana3.apicaller.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.awt.*;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PilotDto {
-    int meeting_key;
-    int session_key;
+
     int driver_number;
-    String broadcast_name;
     String full_name;
     String name_acronym;
     String team_name;
     String team_colour;
-    String first_name;
-    String last_name;
     String headshot_url;
     String country_code ;
 
@@ -25,36 +23,12 @@ public class PilotDto {
         this.team_name = team_name;
     }
 
-    public int getMeeting_key() {
-        return meeting_key;
-    }
-
-    public void setMeeting_key(int meeting_key) {
-        this.meeting_key = meeting_key;
-    }
-
-    public int getSession_key() {
-        return session_key;
-    }
-
-    public void setSession_key(int session_key) {
-        this.session_key = session_key;
-    }
-
     public int getDriver_number() {
         return driver_number;
     }
 
     public void setDriver_number(int driver_number) {
         this.driver_number = driver_number;
-    }
-
-    public String getBroadcast_name() {
-        return broadcast_name;
-    }
-
-    public void setBroadcast_name(String broadcast_name) {
-        this.broadcast_name = broadcast_name;
     }
 
     public String getFull_name() {
@@ -81,22 +55,6 @@ public class PilotDto {
         this.team_colour = team_colour;
     }
 
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
     public String getHeadshot_url() {
         return headshot_url;
     }
@@ -116,16 +74,11 @@ public class PilotDto {
     @Override
     public String toString() {
         return "PilotDto{" +
-                "\nmeeting_key=" + meeting_key +
-                "\nsession_key=" + session_key +
                 "\ndriver_number=" + driver_number +
-                "\nbroadcast_name='" + broadcast_name + '\'' +
                 "\nfull_name='" + full_name + '\'' +
                 "\nname_acronym='" + name_acronym + '\'' +
                 "\nteam_name='" + team_name + '\'' +
                 "\nteam_colour='" + team_colour + '\'' +
-                "\nfirst_name='" + first_name + '\'' +
-                "\nlast_name='" + last_name + '\'' +
                 "\nheadshot_url='" + headshot_url + '\'' +
                 "\ncountry_code='" + country_code + '\'' +
                 "\n}";
