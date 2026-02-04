@@ -140,7 +140,7 @@ Exibir em lista com formatação (CLI) ou cards/tabela (front);
 |-----|------|------------------|
 | 1   | • Preparação do ambiente e inicio da aplicação; <br/>• Atualização do README. | 30 minutos |
 | 2   | • Início de testes da API;<br/>• Construção de arquivos;<br/>• Atualização do README. | 1 hora |
-| 3   | 
+| 3   | • Construção de classes e busca d dados na API;<br/>•Início da construção do Front End;<br/>• Atualização do README. | 1 hora e 20 minutos |
 | 4   | 
 | 5   | 
 | 6   | 
