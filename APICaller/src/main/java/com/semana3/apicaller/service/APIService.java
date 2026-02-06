@@ -14,7 +14,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 public class APIService {
-    public PilotDto  getPilotName(String firstName) {
+    public PilotDto getPilotName(String firstName) {
 
         PilotDto pilotDto = new PilotDto();
 
