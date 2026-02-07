@@ -1,6 +1,7 @@
 package com.semana3.apicaller;
 
 import com.semana3.apicaller.components.PilotCard;
+import com.semana3.apicaller.dto.PilotDto;
 import com.semana3.apicaller.service.APIService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,40 +13,71 @@ import java.io.IOException;
 
 @SpringBootApplication
 public class ApiCallerApplication {
+    APIService apiService = new APIService();
+    PilotDto pilot;
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        APIService apiService = new APIService();
+    JFrame frame;
 
+    JPanel panel;
+    JPanel results;
+
+    JTextField searchField;
+
+    JButton pesquisarButton;
+
+    ButtonGroup radioGroup;
+
+    JLabel title;
+
+    JRadioButton radioName;
+    JRadioButton radioTeam;
+    JRadioButton radioCountry;
+
+    String searchText = searchField.getText().replaceAll("\\s+", "").toLowerCase();
+
+    void gerarCards(String filter) {
+        try {
+            switch (filter) {
+                case "name":
+                    pilot = apiService.getPilotName(searchText);
+                    panel.add(new PilotCard(pilot));
+                    break;
+                default:
+                    System.out.println("Algo não deu certo");
+            }
+
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public ApiCallerApplication() {
         //Gerando Frame
-        JFrame frame = new JFrame("Pilots List");
+        frame = new JFrame("Pilots List");
         frame.setLayout(new BorderLayout());
         frame.setSize(500, 600);
         frame.setLocationRelativeTo(null);
 
         //Gerando Painéis
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        ButtonGroup radioGroup = new ButtonGroup();
+        radioGroup = new ButtonGroup();
 
-        JPanel results = new JPanel();
+        results = new JPanel();
         results.setLayout(new BoxLayout(results, BoxLayout.Y_AXIS));
         results.setPreferredSize(new Dimension(300, 500));
 
-        JScrollPane scrollPane = new JScrollPane(results);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
         //Gerando componentes
-        JLabel title = new JLabel("Selecione o tipo de filtro:");
+        title = new JLabel("Selecione o tipo de filtro:");
 
-        JRadioButton radioName = new JRadioButton("Nome");
-        JRadioButton radioTeam = new JRadioButton("Equipe");
-        JRadioButton radioCountry = new JRadioButton("País");
+        radioName = new JRadioButton("Nome");
+        radioTeam = new JRadioButton("Equipe");
+        radioCountry = new JRadioButton("País");
 
-        JButton pesquisarButton = new JButton("Pesquisar");;
+        pesquisarButton = new JButton("Pesquisar");;
 
-        JTextField searchField = new JTextField();
+        searchField = new JTextField();
         searchField.setPreferredSize(new Dimension(300, 20));
         searchField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
 
@@ -53,21 +85,6 @@ public class ApiCallerApplication {
         radioGroup.add(radioName);
         radioGroup.add(radioTeam);
         radioGroup.add(radioCountry);
-
-
-        pesquisarButton.addActionListener(e -> {
-            if (radioGroup.getSelection() == null) {
-                JOptionPane.showMessageDialog(null, "Selecione uma opção");
-            } else {
-                if (radioName.isSelected()) {
-                    
-                } else if (radioCountry.isSelected()) {
-                    
-                } else if (radioTeam.isSelected()) {
-
-                }
-            }
-        });
 
         //Adições do panel
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -80,15 +97,29 @@ public class ApiCallerApplication {
         panel.add(pesquisarButton);
         panel.add(Box.createVerticalStrut(10));
 
-        panel.add(new PilotCard(apiService.getPilotName("Max")));
+        pesquisarButton.addActionListener(e -> {
+            if (radioGroup.getSelection() == null) {
+                JOptionPane.showMessageDialog(null, "Selecione uma opção");
+            } else {
+                if (radioName.isSelected()) {
+                    System.out.println(searchText);
 
-
+                } else if (radioCountry.isSelected()) {
+                    System.out.println(searchText);
+                } else if (radioTeam.isSelected()) {
+                    System.out.println(searchText);
+                }
+            }
+        });
 
         //Adições do frame
-        frame.add(scrollPane);
         frame.setContentPane(panel);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        new ApiCallerApplication();
     }
 
 }
