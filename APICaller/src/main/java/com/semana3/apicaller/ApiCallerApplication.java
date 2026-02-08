@@ -3,18 +3,20 @@ package com.semana3.apicaller;
 import com.semana3.apicaller.components.PilotCard;
 import com.semana3.apicaller.dto.PilotDto;
 import com.semana3.apicaller.service.APIService;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.awt.*;
+import java.util.Set;
 
 @SpringBootApplication
 public class ApiCallerApplication {
     APIService apiService = new APIService();
-    PilotDto pilot;
+    List<PilotDto> pilots;
 
     JFrame frame;
 
@@ -33,22 +35,41 @@ public class ApiCallerApplication {
     JRadioButton radioTeam;
     JRadioButton radioCountry;
 
-    String searchText = searchField.getText().replaceAll("\\s+", "").toLowerCase();
+    void gerarCards(String filter, String searchText) {
+            try {
+                switch (filter) {
+                    case "name":
+                        pilots = apiService.getPilotsByFirstName(searchText);
+                        break;
+                    case "country":
+                        pilots = apiService.getPilotsByCountry(searchText);
+                        break;
+                    case "team":
+                        pilots = apiService.getPilotsByTeam(searchText);
+                        break;
+                    default:
+                        pilots = List.of();
+                }
 
-    void gerarCards(String filter) {
-        try {
-            switch (filter) {
-                case "name":
-                    pilot = apiService.getPilotName(searchText);
-                    panel.add(new PilotCard(pilot));
-                    break;
-                default:
-                    System.out.println("Algo não deu certo");
+                results.removeAll();
+
+                Set<String> seen = new HashSet<>();
+
+                for (PilotDto p : pilots) {
+                    String key = p.getFull_name();
+
+                    if(seen.contains(key)) continue;
+
+                    seen.add(key);
+                    results.add(new PilotCard(p));
+                }
+
+                results.revalidate();
+                results.repaint();
+
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
     }
 
     public ApiCallerApplication() {
@@ -100,17 +121,22 @@ public class ApiCallerApplication {
         pesquisarButton.addActionListener(e -> {
             if (radioGroup.getSelection() == null) {
                 JOptionPane.showMessageDialog(null, "Selecione uma opção");
-            } else {
-                if (radioName.isSelected()) {
-                    System.out.println(searchText);
+                return;
+            }
 
-                } else if (radioCountry.isSelected()) {
-                    System.out.println(searchText);
-                } else if (radioTeam.isSelected()) {
-                    System.out.println(searchText);
-                }
+            String searchText = searchField.getText().trim();
+
+            if (radioName.isSelected()) {
+                gerarCards("name", searchText);
+            } else if (radioCountry.isSelected()) {
+                gerarCards("country", searchText);
+            } else if (radioTeam.isSelected()) {
+                gerarCards("team", searchText);
             }
         });
+
+        JScrollPane scrollPane = new JScrollPane(results);
+        panel.add(scrollPane);
 
         //Adições do frame
         frame.setContentPane(panel);

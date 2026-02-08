@@ -15,6 +15,16 @@ public class PilotDto {
     String headshot_url;
     String country_code ;
 
+    public int getSession_key() {
+        return session_key;
+    }
+
+    public void setSession_key(int session_key) {
+        this.session_key = session_key;
+    }
+
+    int session_key;
+
     public String getTeam_name() {
         return team_name;
     }

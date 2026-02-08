@@ -12,7 +12,8 @@ public class PilotCard extends JPanel {
     public PilotCard(PilotDto pilot) throws IOException {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(Color.WHITE);
-        setSize(450, 100);
+        setPreferredSize(new Dimension(450, 120));
+        setMaximumSize(new Dimension(Integer.MAX_VALUE, 120));
 
         JPanel pilotInfos = new JPanel();
         pilotInfos.setLayout(new BoxLayout(pilotInfos, BoxLayout.Y_AXIS));
@@ -21,10 +22,18 @@ public class PilotCard extends JPanel {
         JLabel pilotTeam = new JLabel("Team: " + pilot.getTeam_name());
         JLabel pilotAcro = new JLabel("Acronym: " + pilot.getName_acronym());
         JLabel pilotCountry = new JLabel("Country: " + pilot.getCountry_code());
+
         JPanel colorPanel = new JPanel();
-        colorPanel.setPreferredSize(new Dimension(450, 20));
-        colorPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 20));
-        colorPanel.setBackground(Color.decode("#" + pilot.getTeam_colour()));
+        colorPanel.setPreferredSize(new Dimension(450, 10));
+        colorPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
+
+        String color = pilot.getTeam_colour();
+
+        if (color == null || color.isBlank()) {
+            colorPanel.setBackground(Color.GRAY);
+        } else {
+            colorPanel.setBackground(Color.decode("#" + color));
+        }
 
         pilotInfos.add(pilotName);
         pilotInfos.add(pilotTeam);
