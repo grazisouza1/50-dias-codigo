@@ -142,7 +142,7 @@ Exibir em lista com formatação (CLI) ou cards/tabela (front);
 | 2   | • Início de testes da API;<br/>• Construção de arquivos;<br/>• Atualização do README. | 1 hora |
 | 3   | • Construção de classes e busca d dados na API;<br/>•Início da construção do Front End;<br/>• Atualização do README. | 1 hora e 20 minutos |
 | 4   | • Início da onstrução de funções para filtro de pesquisae;<br/>• Atualização do README. | 30 minutos |
-| 5   | • Ajustando as classes e trabalhando na função de filtro;<br/>• Atualização do README. | 1 hora |
-| 6   | 
+| 5   | • Ajuste das classes e tratamento na função de filtro;<br/>• Atualização do README. | 1 hora |
+| 6   | • Ajustes finais na função de filtro;<br/>• Corrigindo erros de tratamento e entrada;<br/>• Atualização do README | 1 hora e 40 minutos |
 | 7   | 
 
