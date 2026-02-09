@@ -15,6 +15,7 @@ import java.util.Set;
 
 @SpringBootApplication
 public class ApiCallerApplication {
+    //Criando um objeto para rodar os serviços da API chamados pelo APIService
     APIService apiService = new APIService();
     List<PilotDto> pilots;
 
@@ -36,6 +37,7 @@ public class ApiCallerApplication {
     JRadioButton radioCountry;
 
     void gerarCards(String filter, String searchText) {
+            //Confere o filtro, para direcionar o que a API deve buscar, e depois usa funções do API Service para buscar o que o user deseja
             try {
                 switch (filter) {
                     case "name":
@@ -51,7 +53,9 @@ public class ApiCallerApplication {
                         pilots = List.of();
                 }
 
+                //Limpa a área de cards
                 results.removeAll();
+
 
                 Set<String> seen = new HashSet<>();
 
@@ -126,6 +130,7 @@ public class ApiCallerApplication {
 
             String searchText = searchField.getText().trim();
 
+            //Gera os cards de acordo com o filtro selecionado
             if (radioName.isSelected()) {
                 gerarCards("name", searchText);
             } else if (radioCountry.isSelected()) {

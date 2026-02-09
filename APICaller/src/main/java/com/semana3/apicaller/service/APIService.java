@@ -6,7 +6,6 @@ import com.semana3.apicaller.dto.PilotDto;
 import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
-import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -14,6 +13,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 
 public class APIService {
+    //A função vai retornar a lista de pilotos que vai aparecer na resposta. Query vai conter as informações de onde a API deve buscar cada dado
     public List<PilotDto> requestPilots(String query) {
         try {
             HttpClient client = HttpClient.newHttpClient();
@@ -29,6 +29,7 @@ public class APIService {
         }
     }
 
+    //Em cada função, será adicionado a informação chave que a API deve buscar, e a string sera a palavra que o usuáario colocar no textField
     public List<PilotDto> getPilotsByCountry(String country) {
         return requestPilots("country_code=" + country.trim().toUpperCase());
     }

@@ -9,7 +9,9 @@ import java.io.IOException;
 
 //Criando card dos pilotos
 public class PilotCard extends JPanel {
+    //Função vai retornar um tipo PilotDto, pois cada card retorna apenas 1 piloto
     public PilotCard(PilotDto pilot) throws IOException {
+        //Ajustando layout do card com java swing
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(450, 120));
@@ -18,6 +20,7 @@ public class PilotCard extends JPanel {
         JPanel pilotInfos = new JPanel();
         pilotInfos.setLayout(new BoxLayout(pilotInfos, BoxLayout.Y_AXIS));
 
+        //O PilotCard recebe um piloto, e a partir disso, se cria um objeto PilotDto que contém os getters e setters necessários
         JLabel pilotName = new JLabel("Name: " + pilot.getFull_name());
         JLabel pilotTeam = new JLabel("Team: " + pilot.getTeam_name());
         JLabel pilotAcro = new JLabel("Acronym: " + pilot.getName_acronym());
