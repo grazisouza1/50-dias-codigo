@@ -144,5 +144,29 @@ Exibir em lista com formatação (CLI) ou cards/tabela (front);
 | 4   | • Início da onstrução de funções para filtro de pesquisae;<br/>• Atualização do README. | 30 minutos |
 | 5   | • Ajuste das classes e tratamento na função de filtro;<br/>• Atualização do README. | 1 hora |
 | 6   | • Ajustes finais na função de filtro;<br/>• Corrigindo erros de tratamento e entrada;<br/>• Atualização do README | 1 hora e 40 minutos |
-| 7   | 
+| 7   | • Ajuste de funcionalidades finais;<br/>• Adição de comentários;<br/>• Atualização do README. | 30 minutos |
+
+---
+
+⚙️ <strong>API Usada: </strong>
+OpenF1 (API com informações sobre Fórmula 1)
+
+ <br/>
+ 
+📊 <strong>Funcionalidade: </strong>
+
+- Pesquisar por nome => Colocando o primeiro nome de um dos pilotos, ele retornará uma lista com todos os pilotos cujo primeiro nome correspondem ao nome inserido pelo usuário
+<img width="517" height="338" alt="image" src="https://github.com/user-attachments/assets/9d1bbc98-fe59-4154-b415-48a49e7de196" />
+
+<br/>
+<br/>
+
+- Pesquisar por equipe => Colocando o nome completo da equipe, é possível ver todos os pilotos que correm levando o nome da mesma
+<img width="518" height="619" alt="image" src="https://github.com/user-attachments/assets/8fe09cb8-c8c0-446d-a94a-d0271a4d2d16" />
+
+<br/>
+<br/>
+
+- Pesquisar por país => Digitando o nome do país em sua forma abreviada e com todas as letras maiúsculas, conseguimos acessar todos os pilotos com a nacionalidade escolhida pelo usuário
+<img width="518" height="619" alt="image" src="https://github.com/user-attachments/assets/705dd5a7-6320-410f-aae2-ca85330576b1" />
 
