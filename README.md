@@ -35,7 +35,7 @@
 <br/>
 
 ### ⚡ Semana 1: Fundamentos da sua linguagem (sintaxe, controle de fluxo, funções) 
-  - <strong>Objetivo: </strong> Criar um programa que _leia uma lista de números_ informados pelo usuário e calcula a:
+<strong>Objetivo: </strong> Criar um programa que _leia uma lista de números_ informados pelo usuário e calcula a:
 &nbsp;
 
 ✓ Soma
@@ -69,7 +69,7 @@ exibindo os resultados para o usuário de forma organizada e formatada
 <br/>
 
 ### ⚡ Semana 2: Estruturas e POO/funções avançadas. 
-  - <strong>Objetivo: </strong> Criar um programa de gerenciamento de tarefas em memória (mini CRUD), que permita ao usuário:
+<strong>Objetivo: </strong> Criar um programa de gerenciamento de tarefas em memória (mini CRUD), que permita ao usuário:
 &nbsp;
 
 ✓ Criar tarefas;
@@ -110,7 +110,7 @@ Status (ex.: pendente, concluída)
 <br/>
 
 ### ⚡ Semana 3: Arquivos e APIs (requisições HTTP) 
-  - <strong>Objetivo: </strong>
+<strong>Objetivo: </strong>
 
 ✓ Consumir uma API pública (Você pode escolher uma API pública para trabalhar);
 &nbsp;
@@ -169,4 +169,43 @@ OpenF1 (API com informações sobre Fórmula 1)
 
 - Pesquisar por país => Digitando o nome do país em sua forma abreviada e com todas as letras maiúsculas, conseguimos acessar todos os pilotos com a nacionalidade escolhida pelo usuário
 <img width="518" height="619" alt="image" src="https://github.com/user-attachments/assets/705dd5a7-6320-410f-aae2-ca85330576b1" />
+
+<br/>
+
+---
+
+<br/>
+
+### ⚡ Semana 4: Projeto prático (API/CLI/app simples)
+<strong>Objetivo: </strong> Crie um projeto prático que una os conhecimentos das semanas anteriores.
+&nbsp;
+
+O projeto deve ter no mínimo 3 funcionalidades reais.
+Seu projeto deve incluir obrigatoriamente:
+&nbsp;
+&nbsp;
+
+  - Integração com uma API (pública ou própria);
+&nbsp;
+
+  - Manipulação de dados (filtros, buscas, ordenações ou transformações);
+&nbsp;
+
+  - Interface de uso (qualquer uma abaixo):
+    - CLI com menu interativo;
+    - Aplicação web simples;
+    - API própria com endpoints;
+    - App minimalista com input/output organizado.
+
+| Dia | Task | Tempo de Duração |
+|-----|------|------------------|
+| 1   | • Seleção de API; <br/>• Montagem de diagrama;<br/>• Preparação de ambiente;<br/>• Atualização do README. | 30 minutos |
+| 2   | • 
+| 3   | • 
+| 4   | • 
+| 5   | • 
+| 6   | • 
+| 7   | • 
+
+---
 
