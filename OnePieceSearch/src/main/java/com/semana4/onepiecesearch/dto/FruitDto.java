@@ -5,4 +5,20 @@ public class FruitDto {
     String roman_name;
     String description;
     String type;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getRoman_name() {
+        return roman_name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getType() {
+        return type;
+    }
 }
