@@ -200,7 +200,7 @@ Seu projeto deve incluir obrigatoriamente:
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
 | 1   | • Seleção de API; <br/>• Montagem de diagrama;<br/>• Preparação de ambiente;<br/>• Atualização do README. | 30 minutos |
-| 2   | • 
+| 2   | • Criando Dto's;<br/>• Iniciando projeto;<br/>• Atualização do README. | 40 minutos |
 | 3   | • 
 | 4   | • 
 | 5   | • 
