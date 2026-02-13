@@ -202,7 +202,7 @@ Seu projeto deve incluir obrigatoriamente:
 | 1   | • Seleção de API; <br/>• Montagem de diagrama;<br/>• Preparação de ambiente;<br/>• Atualização do README. | 30 minutos |
 | 2   | • Criando Dto's;<br/>• Iniciando projeto;<br/>• Atualização do README. | 40 minutos |
 | 3   | • Adição de Dto's e getters, controllers e services;<br/>• Criação de menu interativo e funções para cada seleção;<br/>• Atualização do README. | 1 hora |
-| 4   | • 
+| 4   | • Criação da função de pesquisar por personagem;<br/>• Criação de novas classes;<br/>• Atualização do README. | 1 hora |
 | 5   | • 
 | 6   | • 
 | 7   | • 
