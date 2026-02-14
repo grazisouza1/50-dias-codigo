@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.ObjectWriter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 @Component
@@ -64,7 +67,7 @@ public class Menu {
                         System.out.println("\nNúmero 4 selecionado");
                         break;
                     case 5:
-                        System.out.println("\nNúmero 5 selecionado");
+                        showSaga();
                         break;
                     case 6:
                         System.out.println("\nVocê selecionou 'Sair'");
@@ -95,11 +98,18 @@ public class Menu {
         System.out.println("10 - Piratas Arlong     | 16 - Piratas Barba Branca");
         System.out.println("21 - Piratas Donquixote | 22 - Piratas Barba Negra");
         System.out.println("32 - Piratas do Coração | 33 - Piratas do Kid");
-        System.out.println("34 - Piratas Hawkins    | 33 - Piratas Big Mom\n");
+        System.out.println("34 - Piratas Hawkins    | 53 - Piratas Big Mom\n");
         System.out.print("Selecione o ID de uma tripulação: ");
+        List<Integer> crewIds = new ArrayList<>(Arrays.asList(1, 2, 4, 5, 10, 16, 21, 22, 32, 33, 34, 53));
         String selectedCrewId = scanner.nextLine().trim();
         try {
             int selectedCrewIdFormated = Integer.parseInt(selectedCrewId);
+
+            if(!crewIds.contains(selectedCrewIdFormated)) {
+                System.out.println("\n⚠ Insira um número válido da lista de ID's ⚠\n");
+                return;
+            }
+
             String result = crewService.searchCrewById(selectedCrewIdFormated);
             System.out.println(result);
         } catch (NumberFormatException e){
@@ -118,6 +128,63 @@ public class Menu {
             System.out.println(result);
         } catch (NumberFormatException e) {
             System.out.println("O valor deve ser um número");
+        }
+    }
+
+    public void showFruit(){
+
+    }
+
+    public void showSaga() {
+        System.out.println("1. Buscar saga por ID");
+        System.out.println("2. Buscar saga por nome\n");
+        System.out.print("Selecione uma das opções acima: ");
+        String selectedOption = scanner.nextLine().trim();
+        try {
+            int selectedOptionFormated = Integer.parseInt(selectedOption);
+
+            if(selectedOptionFormated > 2 || selectedOptionFormated < 1){
+                System.out.println("\n⚠ Selecione um número válido (entre 1 e 2) ⚠\n");
+                return;
+            }
+
+            if (selectedOptionFormated == 1) {
+                System.out.println("===== Lista de sagas por ID =====");
+                System.out.println("1. East Blue         | 2. Alabasta");
+                System.out.println("3. Celestial Island  | 4. Water Seven / CP9");
+                System.out.println("5. Thriller Bark     | 6. War at the top");
+                System.out.println("7. Fish men island   | 8. Dressrosa / Pirate Alliance");
+                System.out.println("9. Four Emperors     | 10. Final Saga\n");
+
+                System.out.print("Selecione um dos ID's acima: ");
+                String selectedId = scanner.nextLine().trim();
+
+                try {
+                    int selectedIdFormated = Integer.parseInt(selectedId);
+
+                    if(selectedIdFormated > 10 || selectedIdFormated < 1){
+                        System.out.println("⚠ Selecione uma opção válida (Entre 1 e 10) ⚠");
+                        return;
+                    }
+
+                    sagaService.searchSagaById(selectedIdFormated);
+                } catch (NumberFormatException e) {
+                    System.out.println("\nA opção deve ser um número\n");
+                }
+            } else if (selectedOptionFormated == 2) {
+                System.out.print("Digite o nome da saga que deseja buscar: ");
+                String sagaTypedName = scanner.nextLine();
+
+                String result = sagaService.searchByName(sagaTypedName);
+
+                System.out.println(result);
+            } else {
+                System.out.println("Número inválido");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("\nA opção selecionada deve ser um número\n");
+            return;
         }
     }
 }
