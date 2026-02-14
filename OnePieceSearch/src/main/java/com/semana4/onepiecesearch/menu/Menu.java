@@ -1,7 +1,6 @@
 package com.semana4.onepiecesearch.menu;
 
-import com.semana4.onepiecesearch.service.CharacterService;
-import com.semana4.onepiecesearch.service.CrewService;
+import com.semana4.onepiecesearch.service.*;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.ObjectWriter;
@@ -13,11 +12,18 @@ public class Menu {
 
     private final CharacterService characterService;
     private final CrewService crewService;
+    private final EpisodeService episodeService;
+    private final FruitService fruitService;
+    private final SagaService sagaService;
+
     private final Scanner scanner = new Scanner(System.in);
 
-    public Menu (CharacterService characterService, CrewService crewService) {
+    public Menu (CharacterService characterService, CrewService crewService, EpisodeService episodeService, FruitService fruitService, SagaService sagaService) {
         this.characterService = characterService;
         this.crewService = crewService;
+        this.episodeService = episodeService;
+        this.fruitService = fruitService;
+        this.sagaService = sagaService;
     }
 
     public void startApplication() {
@@ -52,7 +58,7 @@ public class Menu {
                         showCrew();
                         break;
                     case 3:
-                        System.out.println("\nNúmero 3 selecionado");
+                        showEpisode();
                         break;
                     case 4:
                         System.out.println("\nNúmero 4 selecionado");
@@ -91,13 +97,27 @@ public class Menu {
         System.out.println("32 - Piratas do Coração | 33 - Piratas do Kid");
         System.out.println("34 - Piratas Hawkins    | 33 - Piratas Big Mom\n");
         System.out.print("Selecione o ID de uma tripulação: ");
-        String selectedCrewId = scanner.nextLine();
+        String selectedCrewId = scanner.nextLine().trim();
         try {
             int selectedCrewIdFormated = Integer.parseInt(selectedCrewId);
             String result = crewService.searchCrewById(selectedCrewIdFormated);
             System.out.println(result);
         } catch (NumberFormatException e){
             System.out.println("\nInsira um formato válido\n");
+        }
+    }
+
+    public void showEpisode(){
+        System.out.print("Selecione o número do episódio que deseja pesquisar: ");
+        String selectedEpisode = scanner.nextLine().trim();
+
+        try {
+            int selectedEpisodeFormated = Integer.parseInt(selectedEpisode);
+            String result = episodeService.searchEpisodeByNumber(selectedEpisodeFormated);
+
+            System.out.println(result);
+        } catch (NumberFormatException e) {
+            System.out.println("O valor deve ser um número");
         }
     }
 }
