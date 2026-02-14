@@ -1,6 +1,7 @@
 package com.semana4.onepiecesearch.menu;
 
 import com.semana4.onepiecesearch.service.CharacterService;
+import com.semana4.onepiecesearch.service.CrewService;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.ObjectWriter;
@@ -10,11 +11,13 @@ import java.util.Scanner;
 @Component
 public class Menu {
 
-    private final CharacterService service;
+    private final CharacterService characterService;
+    private final CrewService crewService;
     private final Scanner scanner = new Scanner(System.in);
 
-    public Menu (CharacterService service) {
-        this.service = service;
+    public Menu (CharacterService characterService, CrewService crewService) {
+        this.characterService = characterService;
+        this.crewService = crewService;
     }
 
     public void startApplication() {
@@ -46,7 +49,7 @@ public class Menu {
                         showCharacter();
                         break;
                     case 2:
-                        System.out.println("\nNúmero 2 selecionado");
+                        showCrew();
                         break;
                     case 3:
                         System.out.println("\nNúmero 3 selecionado");
@@ -74,13 +77,27 @@ public class Menu {
         System.out.print("Digite o nome do personagem que deseja buscar (Lembre-se de digitar com as primeiras letras maiúsculas(Ex.: 'Roronoa Zoro')): ");
         String characterName = scanner.nextLine().trim();
 
-        String result = service.searchByName(characterName);
+        String result = characterService.searchByName(characterName);
 
         System.out.println(result);
     }
 
     public void showCrew() {
-        System.out.print("Digite a tripulação que deseja buscar: ");
-        String crewName = scanner.nextLine().trim();
+        System.out.println("\n======== ID's de cada tripulação ========");
+        System.out.println("1 - Chapéus de Palha    | 2 - Piratas do Ruivo");
+        System.out.println("4 - Piratas do Buggy    | 5 - Piratas Roger ");
+        System.out.println("10 - Piratas Arlong     | 16 - Piratas Barba Branca");
+        System.out.println("21 - Piratas Donquixote | 22 - Piratas Barba Negra");
+        System.out.println("32 - Piratas do Coração | 33 - Piratas do Kid");
+        System.out.println("34 - Piratas Hawkins    | 33 - Piratas Big Mom\n");
+        System.out.print("Selecione o ID de uma tripulação: ");
+        String selectedCrewId = scanner.nextLine();
+        try {
+            int selectedCrewIdFormated = Integer.parseInt(selectedCrewId);
+            String result = crewService.searchCrewById(selectedCrewIdFormated);
+            System.out.println(result);
+        } catch (NumberFormatException e){
+            System.out.println("\nInsira um formato válido\n");
+        }
     }
 }

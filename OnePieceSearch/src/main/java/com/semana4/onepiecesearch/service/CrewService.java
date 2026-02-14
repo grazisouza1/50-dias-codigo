@@ -1,5 +1,6 @@
 package com.semana4.onepiecesearch.service;
 
+import org.springframework.boot.jackson.autoconfigure.JacksonProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,7 +12,8 @@ public class CrewService {
         this.restTemplate = restTemplate;
     }
 
-    public void searchCrewById(int crewId) {
+    public String searchCrewById(int crewId) {
         String url = "https://api.api-onepiece.com/v2/crews/en/" + crewId;
+        return restTemplate.getForObject(url, String.class);
     }
 }
