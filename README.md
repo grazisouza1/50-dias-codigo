@@ -203,7 +203,7 @@ Seu projeto deve incluir obrigatoriamente:
 | 2   | • Criando Dto's;<br/>• Iniciando projeto;<br/>• Atualização do README. | 40 minutos |
 | 3   | • Adição de Dto's e getters, controllers e services;<br/>• Criação de menu interativo e funções para cada seleção;<br/>• Atualização do README. | 1 hora |
 | 4   | • Criação da função de pesquisar por personagem;<br/>• Criação de novas classes;<br/>• Atualização do README. | 1 hora |
-| 5   | • 
+| 5   | • Ajuste da função de buscar tripulação por id;<br/>• Ajuste da função de buscar episódio por id;<br/>• Ajuste da função de buscar saga por id e por nome;<br/>• Atualização do README. | 2 horas e 40 minutos |
 | 6   | • 
 | 7   | • 
 
