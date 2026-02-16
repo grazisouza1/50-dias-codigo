@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.semana4.onepiecesearch.dto.CharacterDto;
 import com.semana4.onepiecesearch.dto.CrewDto;
+import com.semana4.onepiecesearch.dto.EpisodeDto;
 import com.semana4.onepiecesearch.dto.SagaDto;
 import com.semana4.onepiecesearch.service.*;
 import org.springframework.stereotype.Component;
@@ -50,7 +51,7 @@ public class Menu {
                 selectedNumInt = Integer.parseInt(selectedNum);
 
                 if (selectedNumInt > 5 || selectedNumInt < 1) {
-                    System.out.println("\n⚠ Selecione uma opção válida (de 1 à 6) ⚠\n");
+                    System.out.println("\n⚠ Selecione uma opção válida (de 1 à 5) ⚠\n");
                     continue;
                 }
 
@@ -131,11 +132,13 @@ public class Menu {
 
         try {
             int selectedEpisodeFormated = Integer.parseInt(selectedEpisode);
-            String result = episodeService.searchEpisodeByNumber(selectedEpisodeFormated);
+            EpisodeDto result = episodeService.searchEpisodeByNumber(selectedEpisodeFormated);
 
-            System.out.println(result);
+            System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
         } catch (NumberFormatException e) {
             System.out.println("O valor deve ser um número");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
     }
 
