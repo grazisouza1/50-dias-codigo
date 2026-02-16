@@ -4,7 +4,6 @@ public class CharacterDto {
     int id;
     String bounty;
     String name;
-    FruitDto fruit;
     CrewDto crew;
     String job;
 
@@ -18,10 +17,6 @@ public class CharacterDto {
 
     public String getName() {
         return name;
-    }
-
-    public FruitDto getFruit() {
-        return fruit;
     }
 
     public CrewDto getCrew() {

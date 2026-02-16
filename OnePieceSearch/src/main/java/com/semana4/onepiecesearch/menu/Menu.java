@@ -16,24 +16,22 @@ public class Menu {
     private final CharacterService characterService;
     private final CrewService crewService;
     private final EpisodeService episodeService;
-    private final FruitService fruitService;
     private final SagaService sagaService;
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public Menu (CharacterService characterService, CrewService crewService, EpisodeService episodeService, FruitService fruitService, SagaService sagaService) {
+    public Menu (CharacterService characterService, CrewService crewService, EpisodeService episodeService, SagaService sagaService) {
         this.characterService = characterService;
         this.crewService = crewService;
         this.episodeService = episodeService;
-        this.fruitService = fruitService;
         this.sagaService = sagaService;
     }
 
     public void startApplication() {
-
+        boolean rodando = true;
         int selectedNumInt = 0;
 
-        while (selectedNumInt !=6){
+        while (rodando == true){
             System.out.println("\n======= Banco de informações One Piece =======\n");
             System.out.println("1. Pesquisar personagem");
             System.out.println("2. Pesquisar tripulação");
@@ -53,6 +51,11 @@ public class Menu {
                     continue;
                 }
 
+                if (selectedNumInt == 6 ) {
+                    System.out.println("\nVocê selecionou 'Sair'");
+                    System.exit(1);
+                }
+
                 switch (selectedNumInt) {
                     case 1:
                         showCharacter();
@@ -69,17 +72,14 @@ public class Menu {
                     case 5:
                         showSaga();
                         break;
-                    case 6:
-                        System.out.println("\nVocê selecionou 'Sair'");
-                        break;
                     default:
                         System.out.println("\nEntrada inválida");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("\n⚠ A opção deve ser um número ⚠\n");
             }
+            scanner.close();
         }
-        return;
     }
 
     public void showCharacter() {
@@ -131,10 +131,6 @@ public class Menu {
         }
     }
 
-    public void showFruit(){
-
-    }
-
     public void showSaga() {
         System.out.println("1. Buscar saga por ID");
         System.out.println("2. Buscar saga por nome\n");
@@ -167,7 +163,8 @@ public class Menu {
                         return;
                     }
 
-                    sagaService.searchSagaById(selectedIdFormated);
+                    String result = sagaService.searchSagaById(selectedIdFormated);
+                    System.out.println(result);
                 } catch (NumberFormatException e) {
                     System.out.println("\nA opção deve ser um número\n");
                 }
