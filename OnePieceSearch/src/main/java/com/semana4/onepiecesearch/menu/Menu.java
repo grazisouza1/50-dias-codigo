@@ -1,9 +1,12 @@
 package com.semana4.onepiecesearch.menu;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.semana4.onepiecesearch.dto.CharacterDto;
+import com.semana4.onepiecesearch.dto.CrewDto;
+import com.semana4.onepiecesearch.dto.SagaDto;
 import com.semana4.onepiecesearch.service.*;
 import org.springframework.stereotype.Component;
-import tools.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +21,7 @@ public class Menu {
     private final EpisodeService episodeService;
     private final SagaService sagaService;
 
+    ObjectMapper mapper = new ObjectMapper();
     Scanner scanner = new Scanner(System.in);
 
     public Menu (CharacterService characterService, CrewService crewService, EpisodeService episodeService, SagaService sagaService) {
@@ -36,9 +40,8 @@ public class Menu {
             System.out.println("1. Pesquisar personagem");
             System.out.println("2. Pesquisar tripulação");
             System.out.println("3. Pesquisar episódio");
-            System.out.println("4. Pesquisar fruta");
-            System.out.println("5. Pesquisar saga");
-            System.out.println("6. Sair");
+            System.out.println("4. Pesquisar saga");
+            System.out.println("5. Sair");
 
             System.out.print("\nDigite o número da ação que deseja realizar: ");
             String selectedNum = scanner.nextLine();
@@ -46,12 +49,12 @@ public class Menu {
             try {
                 selectedNumInt = Integer.parseInt(selectedNum);
 
-                if (selectedNumInt > 6 || selectedNumInt < 1) {
+                if (selectedNumInt > 5 || selectedNumInt < 1) {
                     System.out.println("\n⚠ Selecione uma opção válida (de 1 à 6) ⚠\n");
                     continue;
                 }
 
-                if (selectedNumInt == 6 ) {
+                if (selectedNumInt == 5 ) {
                     System.out.println("\nVocê selecionou 'Sair'");
                     System.exit(1);
                 }
@@ -67,9 +70,6 @@ public class Menu {
                         showEpisode();
                         break;
                     case 4:
-                        System.out.println("\nNúmero 4 selecionado");
-                        break;
-                    case 5:
                         showSaga();
                         break;
                     default:
@@ -77,18 +77,24 @@ public class Menu {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("\n⚠ A opção deve ser um número ⚠\n");
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
             }
         }
     }
 
-    public void showCharacter() {
+    public void showCharacter() throws JsonProcessingException {
         System.out.print("Digite o nome do personagem que deseja buscar (Lembre-se de digitar com as primeiras letras maiúsculas(Ex.: 'Roronoa Zoro')): ");
         String characterName = scanner.nextLine().trim();
 
         CharacterDto result = characterService.searchByName(characterName);
 
-        ObjectMapper mapper = new ObjectMapper();
-        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
+        if (result == null) {
+            System.out.println("\nPersonagem não encontrado\n");
+        } else {
+            System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
+        }
+
     }
 
     public void showCrew() {
@@ -110,10 +116,12 @@ public class Menu {
                 return;
             }
 
-            String result = crewService.searchCrewById(selectedCrewIdFormated);
-            System.out.println(result);
+            CrewDto result = crewService.searchCrewById(selectedCrewIdFormated);
+            System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
         } catch (NumberFormatException e){
             System.out.println("\nInsira um formato válido\n");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -163,24 +171,40 @@ public class Menu {
                         return;
                     }
 
-                    String result = sagaService.searchSagaById(selectedIdFormated);
-                    System.out.println(result);
+                    SagaDto result = sagaService.searchSagaById(selectedIdFormated);
+
+                    if (result == null) {
+                        System.out.println("\nSaga não encontrada\n");
+                    } else {
+                        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
+                    }
+
                 } catch (NumberFormatException e) {
                     System.out.println("\nA opção deve ser um número\n");
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);
                 }
             } else if (selectedOptionFormated == 2) {
                 System.out.print("Digite o nome da saga que deseja buscar: ");
-                String sagaTypedName = scanner.nextLine();
+                String sagaTypedName = scanner.nextLine().trim();
 
-                String result = sagaService.searchByName(sagaTypedName);
+                SagaDto result = sagaService.searchByName(sagaTypedName);
 
-                System.out.println(result);
+                if(result == null) {
+                    System.out.println("\nSaga não encontrada\n");
+                } else {
+                    System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
+                }
+
             } else {
                 System.out.println("Número inválido");
                 return;
             }
         } catch (NumberFormatException e) {
             System.out.println("\nA opção selecionada deve ser um número\n");
+            return;
+        } catch (JsonProcessingException e) {
+            System.out.println("\nNão foi possível encontrar a saga\n");
             return;
         }
     }

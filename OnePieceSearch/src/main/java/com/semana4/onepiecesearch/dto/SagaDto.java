@@ -1,22 +1,20 @@
 package com.semana4.onepiecesearch.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SagaDto {
-    int id;
     String title;
-    String saga_chapiture;
+    String saga_chapitre;
     String saga_volume;
     String saga_episode;
-
-    public int getId() {
-        return id;
-    }
 
     public String getTitle() {
         return title;
     }
 
-    public String getSaga_chapiture() {
-        return saga_chapiture;
+    public String getSaga_chapitre() {
+        return saga_chapitre;
     }
 
     public String getSaga_volume() {

@@ -1,6 +1,8 @@
 package com.semana4.onepiecesearch.service;
 
-import org.springframework.boot.jackson.autoconfigure.JacksonProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.semana4.onepiecesearch.dto.CrewDto;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,8 +14,12 @@ public class CrewService {
         this.restTemplate = restTemplate;
     }
 
-    public String searchCrewById(int crewId) {
+    public CrewDto searchCrewById(int crewId) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
         String url = "https://api.api-onepiece.com/v2/crews/en/" + crewId;
-        return restTemplate.getForObject(url, String.class);
+
+        String json = restTemplate.getForObject(url, String.class);
+
+        return mapper.readValue(json, CrewDto.class);
     }
 }

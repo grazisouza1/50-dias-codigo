@@ -1,5 +1,7 @@
 package com.semana4.onepiecesearch.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.semana4.onepiecesearch.dto.CrewDto;
 import com.semana4.onepiecesearch.service.CrewService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,7 @@ public class CrewController {
     }
 
     @GetMapping("/{id}")
-    public String search(@PathVariable int crewId) {
+    public CrewDto search(@PathVariable int crewId) throws JsonProcessingException {
         return service.searchCrewById(crewId);
     }
 }

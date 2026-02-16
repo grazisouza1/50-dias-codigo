@@ -1,10 +1,9 @@
 package com.semana4.onepiecesearch.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.semana4.onepiecesearch.dto.SagaDto;
 import com.semana4.onepiecesearch.service.SagaService;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v2/sagas/en")
@@ -16,12 +15,12 @@ public class SagaController {
     }
 
     @GetMapping("/{id}")
-    public String searchById(@PathVariable int sagaId) {
+    public SagaDto searchById(@PathVariable int sagaId) throws JsonProcessingException {
         return sagaService.searchSagaById(sagaId);
     }
 
     @GetMapping("/search")
-    public String searchByName(@RequestParam String sagaName){
+    public SagaDto searchByName(@RequestParam String sagaName) throws JsonProcessingException {
         return sagaService.searchByName(sagaName);
     }
 }

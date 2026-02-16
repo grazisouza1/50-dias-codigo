@@ -7,7 +7,6 @@ public class EpisodeDto {
     String chapter;
     String release_date;
     SagaDto saga;
-    // ArcDto arc;
 
     public int getId() {
         return id;

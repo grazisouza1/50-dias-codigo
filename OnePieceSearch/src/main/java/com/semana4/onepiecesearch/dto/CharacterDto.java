@@ -1,8 +1,10 @@
 package com.semana4.onepiecesearch.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonPropertyOrder({ "name", "age", "size", "bounty", "job", "crew" })
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class CharacterDto {
     String bounty;
