@@ -22,4 +22,10 @@ public class EpisodeService {
 
         return mapper.readValue(json, EpisodeDto.class);
     }
+
+    public int episodesCount() {
+        String url = "https://api.api-onepiece.com/v2/episodes/en/count";
+
+        return restTemplate.getForObject(url, int.class);
+    }
 }

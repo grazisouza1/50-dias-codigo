@@ -47,6 +47,10 @@ public class Menu {
             System.out.print("\nDigite o número da ação que deseja realizar: ");
             String selectedNum = scanner.nextLine();
 
+            if (selectedNum.isEmpty()) {
+                System.out.println("\nEsse campo não pode estar vazio\n");
+            }
+
             try {
                 selectedNumInt = Integer.parseInt(selectedNum);
 
@@ -88,6 +92,11 @@ public class Menu {
         System.out.print("Digite o nome do personagem que deseja buscar (Lembre-se de digitar com as primeiras letras maiúsculas(Ex.: 'Roronoa Zoro')): ");
         String characterName = scanner.nextLine().trim();
 
+        if (characterName.isEmpty()) {
+            System.out.println("\nEsse campo não pode estar vazio\n");
+            return;
+        }
+
         CharacterDto result = characterService.searchByName(characterName);
 
         if (result == null) {
@@ -109,6 +118,12 @@ public class Menu {
         System.out.print("Selecione o ID de uma tripulação: ");
         List<Integer> crewIds = new ArrayList<>(Arrays.asList(1, 2, 4, 5, 10, 16, 21, 22, 32, 33, 34, 53));
         String selectedCrewId = scanner.nextLine().trim();
+
+        if (selectedCrewId.isEmpty()) {
+            System.out.println("\nEsse campo não pode estar vazio\n");
+            return;
+        }
+
         try {
             int selectedCrewIdFormated = Integer.parseInt(selectedCrewId);
 
@@ -130,13 +145,31 @@ public class Menu {
         System.out.print("Selecione o número do episódio que deseja pesquisar: ");
         String selectedEpisode = scanner.nextLine().trim();
 
+        if (selectedEpisode.isEmpty()) {
+            System.out.println("\nEsse campo não pode ser vazio");
+            return;
+        }
+
         try {
             int selectedEpisodeFormated = Integer.parseInt(selectedEpisode);
+
+            if(selectedEpisodeFormated < 0) {
+                System.out.println("\nO número deve ser maior que 0");
+                return;
+            }
+
+            int existentsEps = episodeService.episodesCount();
+
+            if(selectedEpisodeFormated > existentsEps) {
+                System.out.println("\nO número selecionado é maior que o número de episódios existentes");
+                return;
+            }
+
             EpisodeDto result = episodeService.searchEpisodeByNumber(selectedEpisodeFormated);
 
             System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
         } catch (NumberFormatException e) {
-            System.out.println("O valor deve ser um número");
+            System.out.println("\nO valor deve ser um número");
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -152,6 +185,11 @@ public class Menu {
 
         System.out.print("Selecione um dos ID's acima: ");
         String selectedId = scanner.nextLine().trim();
+
+        if (selectedId.isEmpty()) {
+            System.out.println("\nEsse campo não pode ser vazio");
+            return;
+        }
 
         try {
             int selectedIdFormated = Integer.parseInt(selectedId);
