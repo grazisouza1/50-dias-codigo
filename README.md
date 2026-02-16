@@ -205,7 +205,71 @@ Seu projeto deve incluir obrigatoriamente:
 | 4   | • Criação da função de pesquisar por personagem;<br/>• Criação de novas classes;<br/>• Atualização do README. | 1 hora |
 | 5   | • Ajuste da função de buscar tripulação por id;<br/>• Ajuste da função de buscar episódio por id;<br/>• Ajuste da função de buscar saga por id e por nome;<br/>• Atualização do README. | 2 horas e 40 minutos |
 | 6   | • Remoção da opção de buscar por fruta;<br/>• Correção de saída do menu<br/>• Atualização do README. | 40 minutos |
-| 7   | • 
+| 7   | • Formatação dos retornos das buscas;<br/>• Corrigindo erros de entrada geral e retorno das sagas;<br/>• Finalização de correção de entrada dos episódios;<br/>• Ajuste do projeto final;<br/>• Atualização do README. | 3 horas e 30 minutos |
 
 ---
 
+### ⚙️ API Usada: 
+Api One Piece (Informações do anime One Piece)
+
+ <br/>
+ 
+### 📊 Funcionalidades: 
+
+<br/>
+
+- A aplicação começa com um menu interativo que mostra a ação associada a cada número que o usuário escolher:
+<img width="410" height="235" alt="image" src="https://github.com/user-attachments/assets/7be6eb80-5b2d-49f9-9425-ddb325c7366d" />
+
+<br/>
+<br/> 
+
+<strong>1. Pesquisar por nome de personagem </strong> => Colocando o nome completo de um personagem (com as primeiras letras maiúsculas), isso retorna algumas informações sobre ele:
+<img width="1125" height="388" alt="image" src="https://github.com/user-attachments/assets/de5f51a3-89d3-4b22-82e8-d29713b55807" />
+
+<br/>
+<br/>
+
+<strong>2. Pesquisar por tripulação</strong> => Ao selecionar "pesquisar por tripulação", é mostrado uma lista de id's correspondentes de cada tripulação:
+<br/>
+<img width="458" height="274" alt="image" src="https://github.com/user-attachments/assets/a5e8d70f-981f-4320-8573-1c3fce968369" />
+<br/>
+E ao selecionar uma tripulação pelo id, suas informações são mostradas na tela:
+<br/>
+<img width="375" height="249" alt="image" src="https://github.com/user-attachments/assets/1f76fe80-d8a3-43c0-b87b-5e3463d7b7cc" />
+<br/>
+
+<br/>
+<br/>
+
+<strong>3. Pesquisar por episódio</strong> => Ao selecionar para pesquisar por episódio, você digita o número do episódio desejado:
+<br/>
+<img width="771" height="376" alt="image" src="https://github.com/user-attachments/assets/013cd4db-25f3-48f8-8189-cefdabfc1281" />
+<br/>
+
+<br/>
+<br/>
+
+<strong>4. Pesquisar por saga</strong> => Ao pesquisar por saga, uma lista dos números associadas a cada saga aparecerá para que o usuário selecione a saga que quiser:
+<br/>
+<img width="451" height="227" alt="image" src="https://github.com/user-attachments/assets/cf7dd9c0-eff1-4f58-aa70-5f334a24fb2e" />
+<br/>
+Então, ao selecionar uma saga pelo id, serão retornadas as infomações:
+<br/>
+<img width="310" height="191" alt="image" src="https://github.com/user-attachments/assets/ccef19a2-fd2c-4b1b-8622-3811c1885ea9" />
+<br/>
+
+<br/>
+<br/>
+
+<strong>5. Sair</strong> => Ao selecionar o número 5, a aplicação simplesmente fecha:
+<br/>
+<img width="567" height="377" alt="image" src="https://github.com/user-attachments/assets/f35fa875-cefc-4b6b-b4a8-f6fe211d79d2" />
+<br/>
+
+<br/>
+<br/>
+
+---
+
+<br/>
