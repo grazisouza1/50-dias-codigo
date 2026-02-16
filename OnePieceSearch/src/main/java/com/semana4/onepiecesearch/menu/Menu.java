@@ -25,7 +25,7 @@ public class Menu {
     ObjectMapper mapper = new ObjectMapper();
     Scanner scanner = new Scanner(System.in);
 
-    public Menu (CharacterService characterService, CrewService crewService, EpisodeService episodeService, SagaService sagaService) {
+    public Menu(CharacterService characterService, CrewService crewService, EpisodeService episodeService, SagaService sagaService) {
         this.characterService = characterService;
         this.crewService = crewService;
         this.episodeService = episodeService;
@@ -36,7 +36,7 @@ public class Menu {
         boolean rodando = true;
         int selectedNumInt = 0;
 
-        while (rodando == true){
+        while (rodando == true) {
             System.out.println("\n======= Banco de informações One Piece =======\n");
             System.out.println("1. Pesquisar personagem");
             System.out.println("2. Pesquisar tripulação");
@@ -55,7 +55,7 @@ public class Menu {
                     continue;
                 }
 
-                if (selectedNumInt == 5 ) {
+                if (selectedNumInt == 5) {
                     System.out.println("\nVocê selecionou 'Sair'");
                     System.exit(1);
                 }
@@ -112,21 +112,21 @@ public class Menu {
         try {
             int selectedCrewIdFormated = Integer.parseInt(selectedCrewId);
 
-            if(!crewIds.contains(selectedCrewIdFormated)) {
+            if (!crewIds.contains(selectedCrewIdFormated)) {
                 System.out.println("\n⚠ Insira um número válido da lista de ID's ⚠\n");
                 return;
             }
 
             CrewDto result = crewService.searchCrewById(selectedCrewIdFormated);
             System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("\nInsira um formato válido\n");
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void showEpisode(){
+    public void showEpisode() {
         System.out.print("Selecione o número do episódio que deseja pesquisar: ");
         String selectedEpisode = scanner.nextLine().trim();
 
@@ -143,72 +143,36 @@ public class Menu {
     }
 
     public void showSaga() {
-        System.out.println("1. Buscar saga por ID");
-        System.out.println("2. Buscar saga por nome\n");
-        System.out.print("Selecione uma das opções acima: ");
-        String selectedOption = scanner.nextLine().trim();
+        System.out.println("===== Lista de sagas por ID =====");
+        System.out.println("1. East Blue         | 2. Alabasta");
+        System.out.println("3. Celestial Island  | 4. Water Seven / CP9");
+        System.out.println("5. Thriller Bark     | 6. War at the top");
+        System.out.println("7. Fish men island   | 8. Dressrosa / Pirate Alliance");
+        System.out.println("9. Four Emperors     | 10. Final Saga\n");
+
+        System.out.print("Selecione um dos ID's acima: ");
+        String selectedId = scanner.nextLine().trim();
+
         try {
-            int selectedOptionFormated = Integer.parseInt(selectedOption);
+            int selectedIdFormated = Integer.parseInt(selectedId);
 
-            if(selectedOptionFormated > 2 || selectedOptionFormated < 1){
-                System.out.println("\n⚠ Selecione um número válido (entre 1 e 2) ⚠\n");
+            if (selectedIdFormated > 10 || selectedIdFormated < 1) {
+                System.out.println("⚠ Selecione uma opção válida (Entre 1 e 10) ⚠");
                 return;
             }
 
-            if (selectedOptionFormated == 1) {
-                System.out.println("===== Lista de sagas por ID =====");
-                System.out.println("1. East Blue         | 2. Alabasta");
-                System.out.println("3. Celestial Island  | 4. Water Seven / CP9");
-                System.out.println("5. Thriller Bark     | 6. War at the top");
-                System.out.println("7. Fish men island   | 8. Dressrosa / Pirate Alliance");
-                System.out.println("9. Four Emperors     | 10. Final Saga\n");
+            SagaDto result = sagaService.searchSagaById(selectedIdFormated);
 
-                System.out.print("Selecione um dos ID's acima: ");
-                String selectedId = scanner.nextLine().trim();
-
-                try {
-                    int selectedIdFormated = Integer.parseInt(selectedId);
-
-                    if(selectedIdFormated > 10 || selectedIdFormated < 1){
-                        System.out.println("⚠ Selecione uma opção válida (Entre 1 e 10) ⚠");
-                        return;
-                    }
-
-                    SagaDto result = sagaService.searchSagaById(selectedIdFormated);
-
-                    if (result == null) {
-                        System.out.println("\nSaga não encontrada\n");
-                    } else {
-                        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
-                    }
-
-                } catch (NumberFormatException e) {
-                    System.out.println("\nA opção deve ser um número\n");
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);
-                }
-            } else if (selectedOptionFormated == 2) {
-                System.out.print("Digite o nome da saga que deseja buscar: ");
-                String sagaTypedName = scanner.nextLine().trim();
-
-                SagaDto result = sagaService.searchByName(sagaTypedName);
-
-                if(result == null) {
-                    System.out.println("\nSaga não encontrada\n");
-                } else {
-                    System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
-                }
-
+            if (result == null) {
+                System.out.println("\nSaga não encontrada\n");
             } else {
-                System.out.println("Número inválido");
-                return;
+                System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
             }
+
         } catch (NumberFormatException e) {
-            System.out.println("\nA opção selecionada deve ser um número\n");
-            return;
+            System.out.println("\nA opção deve ser um número\n");
         } catch (JsonProcessingException e) {
-            System.out.println("\nNão foi possível encontrar a saga\n");
-            return;
+            throw new RuntimeException(e);
         }
-    }
+}
 }
