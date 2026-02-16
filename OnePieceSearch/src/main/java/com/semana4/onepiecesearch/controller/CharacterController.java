@@ -1,5 +1,6 @@
 package com.semana4.onepiecesearch.controller;
 
+import com.semana4.onepiecesearch.dto.CharacterDto;
 import com.semana4.onepiecesearch.service.CharacterService;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class CharacterController {
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam String name) {
+    public CharacterDto search(@RequestParam String name) {
         return service.searchByName(name);
     }
 

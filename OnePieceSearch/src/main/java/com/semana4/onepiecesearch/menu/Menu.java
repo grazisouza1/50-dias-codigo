@@ -1,9 +1,9 @@
 package com.semana4.onepiecesearch.menu;
 
+import com.semana4.onepiecesearch.dto.CharacterDto;
 import com.semana4.onepiecesearch.service.*;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
-import tools.jackson.databind.ObjectWriter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ public class Menu {
     private final EpisodeService episodeService;
     private final SagaService sagaService;
 
-    private final Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
     public Menu (CharacterService characterService, CrewService crewService, EpisodeService episodeService, SagaService sagaService) {
         this.characterService = characterService;
@@ -78,7 +78,6 @@ public class Menu {
             } catch (NumberFormatException e) {
                 System.out.println("\n⚠ A opção deve ser um número ⚠\n");
             }
-            scanner.close();
         }
     }
 
@@ -86,9 +85,10 @@ public class Menu {
         System.out.print("Digite o nome do personagem que deseja buscar (Lembre-se de digitar com as primeiras letras maiúsculas(Ex.: 'Roronoa Zoro')): ");
         String characterName = scanner.nextLine().trim();
 
-        String result = characterService.searchByName(characterName);
+        CharacterDto result = characterService.searchByName(characterName);
 
-        System.out.println(result);
+        ObjectMapper mapper = new ObjectMapper();
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result));
     }
 
     public void showCrew() {

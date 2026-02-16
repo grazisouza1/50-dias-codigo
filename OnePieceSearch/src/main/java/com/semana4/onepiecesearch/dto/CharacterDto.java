@@ -1,7 +1,10 @@
 package com.semana4.onepiecesearch.dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({ "name", "age", "size", "bounty", "job", "crew" })
+
 public class CharacterDto {
-    int id;
     String bounty;
     String name;
     CrewDto crew;
@@ -9,10 +12,6 @@ public class CharacterDto {
 
     public String getBounty() {
         return bounty;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getName() {
