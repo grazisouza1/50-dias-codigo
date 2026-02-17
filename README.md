@@ -222,13 +222,33 @@ Api One Piece (Informações do anime One Piece)
 <img width="410" height="235" alt="image" src="https://github.com/user-attachments/assets/7be6eb80-5b2d-49f9-9425-ddb325c7366d" />
 
 <br/>
+<br/>
+
+⚠️ Tratamento de erro(Caso o usuário insira um número inválido ou deixe vazio):
+<br/>
+
+<img width="413" height="103" alt="image" src="https://github.com/user-attachments/assets/46d5c065-46fe-4b93-98cc-11e3279f92d6" />
+<img width="413" height="101" alt="image" src="https://github.com/user-attachments/assets/00751b19-7d6d-40d8-9678-5a8301641bde" />
+
+<br/>
 <br/> 
 
+---
+
 <strong>1. Pesquisar por nome de personagem </strong> => Colocando o nome completo de um personagem (com as primeiras letras maiúsculas), isso retorna algumas informações sobre ele:
+<br/>
 <img width="1125" height="388" alt="image" src="https://github.com/user-attachments/assets/de5f51a3-89d3-4b22-82e8-d29713b55807" />
 
 <br/>
+
+⚠️ Tratamento de erro(Caso o usuário insira uma entrada inválida ou deixe vazio):
 <br/>
+<img width="1047" height="115" alt="image" src="https://github.com/user-attachments/assets/84a31c6a-9d95-44be-be25-560dc3ebe300" />
+<img width="1047" height="115" alt="image" src="https://github.com/user-attachments/assets/e24349aa-c205-42bb-a4e7-6b8aabd44073" />
+
+<br/>
+
+---
 
 <strong>2. Pesquisar por tripulação</strong> => Ao selecionar "pesquisar por tripulação", é mostrado uma lista de id's correspondentes de cada tripulação:
 <br/>
@@ -239,16 +259,28 @@ E ao selecionar uma tripulação pelo id, suas informações são mostradas na t
 <img width="375" height="249" alt="image" src="https://github.com/user-attachments/assets/1f76fe80-d8a3-43c0-b87b-5e3463d7b7cc" />
 <br/>
 
+⚠️ Tratamento de erro(Caso o usuário insira uma entrada inválida ou deixe vazio):
 <br/>
+<img width="385" height="92" alt="image" src="https://github.com/user-attachments/assets/22244b1e-95b4-48cb-9a70-5916b284d85c" />
+<img width="385" height="92" alt="image" src="https://github.com/user-attachments/assets/c391ce3e-ecfe-401b-ba03-251997f2e069" />
+
 <br/>
+
+---
 
 <strong>3. Pesquisar por episódio</strong> => Ao selecionar para pesquisar por episódio, você digita o número do episódio desejado:
 <br/>
 <img width="771" height="376" alt="image" src="https://github.com/user-attachments/assets/013cd4db-25f3-48f8-8189-cefdabfc1281" />
 <br/>
 
+⚠️ Tratamento de erro(Caso o usuário insira uma entrada inválida ou deixe vazio):
 <br/>
+<img width="550" height="116" alt="image" src="https://github.com/user-attachments/assets/07e76640-b498-4fe9-9a7a-8f7797c9b1c9" />
+<img width="440" height="116" alt="image" src="https://github.com/user-attachments/assets/36567e40-71c2-4038-81cf-b05315add802" />
+
 <br/>
+
+---
 
 <strong>4. Pesquisar por saga</strong> => Ao pesquisar por saga, uma lista dos números associadas a cada saga aparecerá para que o usuário selecione a saga que quiser:
 <br/>
@@ -259,7 +291,11 @@ Então, ao selecionar uma saga pelo id, serão retornadas as infomações:
 <img width="310" height="191" alt="image" src="https://github.com/user-attachments/assets/ccef19a2-fd2c-4b1b-8622-3811c1885ea9" />
 <br/>
 
+⚠️ Tratamento de erro(Caso o usuário insira uma entrada inválida ou deixe vazio):]
 <br/>
+<img width="392" height="73" alt="image" src="https://github.com/user-attachments/assets/719fe618-92d5-4633-8812-fafa7b72ca82" />
+<img width="304" height="97" alt="image" src="https://github.com/user-attachments/assets/62c89364-6988-4c61-945e-2a888982970b" />
+
 <br/>
 
 <strong>5. Sair</strong> => Ao selecionar o número 5, a aplicação simplesmente fecha:
@@ -267,7 +303,6 @@ Então, ao selecionar uma saga pelo id, serão retornadas as infomações:
 <img width="567" height="377" alt="image" src="https://github.com/user-attachments/assets/f35fa875-cefc-4b6b-b4a8-f6fe211d79d2" />
 <br/>
 
-<br/>
 <br/>
 
 ---
