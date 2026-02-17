@@ -49,6 +49,7 @@ public class Menu {
 
             if (selectedNum.isEmpty()) {
                 System.out.println("\nEsse campo não pode estar vazio\n");
+                return;
             }
 
             try {
@@ -119,13 +120,13 @@ public class Menu {
         List<Integer> crewIds = new ArrayList<>(Arrays.asList(1, 2, 4, 5, 10, 16, 21, 22, 32, 33, 34, 53));
         String selectedCrewId = scanner.nextLine().trim();
 
-        if (selectedCrewId.isEmpty()) {
-            System.out.println("\nEsse campo não pode estar vazio\n");
-            return;
-        }
-
         try {
             int selectedCrewIdFormated = Integer.parseInt(selectedCrewId);
+
+            if (selectedCrewId.isEmpty()) {
+                System.out.println("\nEsse campo não pode estar vazio\n");
+                return;
+            }
 
             if (!crewIds.contains(selectedCrewIdFormated)) {
                 System.out.println("\n⚠ Insira um número válido da lista de ID's ⚠\n");
@@ -195,7 +196,7 @@ public class Menu {
             int selectedIdFormated = Integer.parseInt(selectedId);
 
             if (selectedIdFormated > 10 || selectedIdFormated < 1) {
-                System.out.println("⚠ Selecione uma opção válida (Entre 1 e 10) ⚠");
+                System.out.println("\n⚠ Selecione uma opção válida (Entre 1 e 10) ⚠");
                 return;
             }
 
