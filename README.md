@@ -17,7 +17,18 @@
 
 <br/>
 
-<h2 align="center"> ⚙️ Linguagem e Ambiente </h2>
+<h2>📚 Sumário</h2>
+
+- [Semana 1](#semana1)
+- [Semana 2](#semana2)
+- [Semana 3](#semana3)
+- [Semana 4](#semana4)
+
+<br/>
+
+---
+
+<h2 align="center" id="linguagemeambiente"> ⚙️ Linguagem e Ambiente </h2>
 
 <br/>
 
@@ -34,7 +45,7 @@
 
 <br/>
 
-### ⚡ Semana 1: Fundamentos da sua linguagem (sintaxe, controle de fluxo, funções) 
+<h3 id="semana1"> ⚡ Semana 1: Fundamentos da sua linguagem (sintaxe, controle de fluxo, funções) </h3>
 <strong>Objetivo: </strong> Criar um programa que _leia uma lista de números_ informados pelo usuário e calcula a:
 &nbsp;
 
@@ -68,7 +79,7 @@ exibindo os resultados para o usuário de forma organizada e formatada
 
 <br/>
 
-### ⚡ Semana 2: Estruturas e POO/funções avançadas. 
+<h3 id="semana2"> ⚡ Semana 2: Estruturas e POO/funções avançadas. </h3>
 <strong>Objetivo: </strong> Criar um programa de gerenciamento de tarefas em memória (mini CRUD), que permita ao usuário:
 &nbsp;
 
@@ -109,7 +120,7 @@ Status (ex.: pendente, concluída)
 
 <br/>
 
-### ⚡ Semana 3: Arquivos e APIs (requisições HTTP) 
+<h3 id="semana3"> ⚡ Semana 3: Arquivos e APIs (requisições HTTP) </h3>
 <strong>Objetivo: </strong>
 
 ✓ Consumir uma API pública (Você pode escolher uma API pública para trabalhar);
@@ -176,7 +187,7 @@ OpenF1 (API com informações sobre Fórmula 1)
 
 <br/>
 
-### ⚡ Semana 4: Projeto prático (API/CLI/app simples)
+<h3 id="semana4"> ⚡ Semana 4: Projeto prático (API/CLI/app simples)</h3>
 <strong>Objetivo: </strong> Crie um projeto prático que una os conhecimentos das semanas anteriores.
 &nbsp;
 
