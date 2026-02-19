@@ -23,6 +23,7 @@
 - [Semana 2](#semana2)
 - [Semana 3](#semana3)
 - [Semana 4](#semana4)
+- [Semana 5](#semana5)
 
 <br/>
 
@@ -319,3 +320,54 @@ Então, ao selecionar uma saga pelo id, serão retornadas as infomações:
 ---
 
 <br/>
+<h3 id="semana5"> ⚡ Semana 5: Testes e qualidade (unitários, lint/format).</h3>
+<strong>Objetivo: </strong> Adicionar uma camada de testes ao projeto. O objetivo é garantir que suas funcionalidades principais funcionam corretamente — e continuam funcionando mesmo após mudanças.
+<br/>
+<br/>
+O desafio consiste em:
+
+<br/>
+<br/>
+
+✅ 1. Criar pelo menos 5 testes automatizados
+Eles podem ser:
+- Testes unitários;
+- Testes de função/componente;
+- Testes de regras de negócio;
+- Testes de utilitários (funções de cálculo, formatação, filtros etc.)
+
+<br/>
+
+✅ 2. Cobrir funcionalidades essenciais
+Escolha partes importantes do seu projeto, como:
+
+- Filtros e buscas;
+- Funções de ordenação;
+- Manipulação de dados;
+- Regras de validação;
+- Serviços internos;
+- Componentes isolados (para quem usa front-end)
+
+<br/>
+
+✅ 3. Aplicar boas práticas
+Inclua pelo menos 2 itens dos seguintes:
+
+- Padronização de código (Prettier, Black, ESLint, StyleCop etc.);
+- Organização de pastas e camadas;
+- Nomenclatura clara e consistente;
+- Comentários úteis e não excessivos;
+- Separação entre lógica e apresentação;
+- Funções pequenas e bem definidas
+
+<br/>
+
+| Dia | Task | Tempo de Duração |
+|-----|------|------------------|
+| 1   | • Introdução aos estudos de teste unitário;<br/>• Atualização do README. | 50 minutos |
+| 2   | •  |  |
+| 3   | •  |  |
+| 4   | •  |  |
+| 5   | •  |  |
+| 6   | •  |  |
+| 7   | •  |  |
