@@ -365,8 +365,8 @@ Inclua pelo menos 2 itens dos seguintes:
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
 | 1   | • Introdução aos estudos de teste unitário;<br/>• Atualização do README. | 50 minutos |
-| 2   | • Avanço n estudos de testes automatizados;<br/>• Criação de testes simples;<br/>• Atualização do README | 1 hora |
-| 3   | •  |  |
+| 2   | • Avanço nos estudos de testes automatizados;<br/>• Criação de testes simples;<br/>• Atualização do README | 1 hora |
+| 3   | • Criação de testes para função do menu;<br/>• Ajuste da classe Menu para criação de testes;<br/>• Estudos sobre outros tipos de teste;<br/>• Atualização de README. | 1 hora e 30 minutos |
 | 4   | •  |  |
 | 5   | •  |  |
 | 6   | •  |  |
