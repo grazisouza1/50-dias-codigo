@@ -22,9 +22,8 @@ public class Menu {
     private final EpisodeService episodeService;
     private final SagaService sagaService;
 
-    ObjectMapper mapper = new ObjectMapper();
     Scanner scanner = new Scanner(System.in);
-
+    ObjectMapper mapper = new ObjectMapper();
     public Menu(CharacterService characterService, CrewService crewService, EpisodeService episodeService, SagaService sagaService) {
         this.characterService = characterService;
         this.crewService = crewService;
@@ -32,9 +31,31 @@ public class Menu {
         this.sagaService = sagaService;
     }
 
+    public Integer processInput(String input) {
+            if (input == null || input.isBlank()) {
+                System.out.println("\nO campo não pode estar vazio");
+                return null;
+            }
+
+            try {
+                int intInput = Integer.parseInt(input);
+
+                if (intInput < 1 || intInput > 5) {
+                    System.out.println("\nSelecione uma opção válida (1 a 5)");
+                    return null;
+                }
+
+                return intInput;
+
+            } catch (NumberFormatException e) {
+                System.out.println("\nA opção deve ser um número");
+                return null;
+            }
+        }
+
     public void startApplication() {
         boolean rodando = true;
-        int selectedNumInt = 0;
+        Integer selectedNumInt = 0;
 
         while (rodando == true) {
             System.out.println("\n======= Banco de informações One Piece =======\n");
@@ -47,22 +68,11 @@ public class Menu {
             System.out.print("\nDigite o número da ação que deseja realizar: ");
             String selectedNum = scanner.nextLine();
 
-            if (selectedNum.isEmpty()) {
-                System.out.println("\nEsse campo não pode estar vazio\n");
-                return;
-            }
-
             try {
-                selectedNumInt = Integer.parseInt(selectedNum);
+                selectedNumInt = processInput(selectedNum);
 
-                if (selectedNumInt > 5 || selectedNumInt < 1) {
-                    System.out.println("\n⚠ Selecione uma opção válida (de 1 à 5) ⚠\n");
+                if (selectedNumInt == null) {
                     continue;
-                }
-
-                if (selectedNumInt == 5) {
-                    System.out.println("\nVocê selecionou 'Sair'");
-                    System.exit(1);
                 }
 
                 switch (selectedNumInt) {
@@ -78,13 +88,16 @@ public class Menu {
                     case 4:
                         showSaga();
                         break;
+                    case 5:
+                        rodando = false;
+                        break;
                     default:
                         System.out.println("\nEntrada inválida");
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("\n⚠ A opção deve ser um número ⚠\n");
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
         }
     }
