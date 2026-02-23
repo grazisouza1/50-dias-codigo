@@ -31,6 +31,7 @@ public class Menu {
         this.sagaService = sagaService;
     }
 
+    //Analisa se o input está vazio ou é uma entrada inválida
     public Integer processInput(String input) {
             if (input == null || input.isBlank()) {
                 System.out.println("\nO campo não pode estar vazio");
@@ -57,6 +58,7 @@ public class Menu {
         boolean rodando = true;
         Integer selectedNumInt = 0;
 
+        //Enquanto estiver rodando, a opção do menu sempre vai aparecer. Ao selecionar a opção de sair, o valor false é associado ao rodando, fazendo a aplicação fechar
         while (rodando == true) {
             System.out.println("\n======= Banco de informações One Piece =======\n");
             System.out.println("1. Pesquisar personagem");
@@ -67,10 +69,13 @@ public class Menu {
 
             System.out.print("\nDigite o número da ação que deseja realizar: ");
             String selectedNum = scanner.nextLine();
+            //A entrada é string para que possa ser tratada no try catch abaixo (confirmar se é um número)
 
             try {
+                //Usa a função de processInput para saber se a entrada é válida
                 selectedNumInt = processInput(selectedNum);
 
+                //Se for inválida, o menu aparece novamente
                 if (selectedNumInt == null) {
                     continue;
                 }

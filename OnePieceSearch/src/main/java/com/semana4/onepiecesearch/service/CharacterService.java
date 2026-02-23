@@ -23,6 +23,7 @@ public class CharacterService {
 
         String json = restTemplate.getForObject(url, String.class);
 
+        //Retorna a lista com todos os resultados correspondentes
         List<CharacterDto> characters = mapper.readValue(json, new TypeReference<List<CharacterDto>>() {});
 
         if (characters.isEmpty()){

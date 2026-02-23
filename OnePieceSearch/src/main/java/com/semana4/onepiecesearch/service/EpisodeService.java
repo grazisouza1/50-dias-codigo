@@ -18,14 +18,17 @@ public class EpisodeService {
     public EpisodeDto searchEpisodeByNumber(int episodeNumber) throws JsonProcessingException {
         String url = "https://api.api-onepiece.com/v2/episodes/en/" + episodeNumber;
 
+        // Executa uma requisição HTTP GET e obtém a resposta como String// Executa uma requisição HTTP GET e obtém a resposta como String
         String json = restTemplate.getForObject(url, String.class);
 
+        // Converte o JSON retornado em um objeto do tipo EpisodeDto e o retorna
         return mapper.readValue(json, EpisodeDto.class);
     }
 
     public int episodesCount() {
         String url = "https://api.api-onepiece.com/v2/episodes/en/count";
 
+        //Sem tratamento, pois o retorno da url é apenas um número
         return restTemplate.getForObject(url, int.class);
     }
 }

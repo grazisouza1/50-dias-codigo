@@ -29,12 +29,15 @@ public class SagaService {
     public SagaDto searchByName(String sagaName) throws JsonProcessingException {
             String url = "https://api.api-onepiece.com/v2/sagas/en/search?title=" + sagaName;
 
+            // Executa uma requisição HTTP GET e obtém a resposta como String// Executa uma requisição HTTP GET e obtém a resposta como String
             String json = restTemplate.getForObject(url, String.class);
 
+            // Desserializa o JSON para uma lista tipada de SagaDto utilizando TypeReference
             List<SagaDto> sagas = mapper.readValue(json, new TypeReference<List<SagaDto>>() {});
 
             if (sagas.isEmpty()) return null;
 
+            //Retorna apenas o 1° resultado
             return sagas.getFirst();
     }
 }
