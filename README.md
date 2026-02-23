@@ -368,6 +368,6 @@ Inclua pelo menos 2 itens dos seguintes:
 | 2   | • Avanço nos estudos de testes automatizados;<br/>• Criação de testes simples;<br/>• Atualização do README | 1 hora |
 | 3   | • Criação de testes para função do menu;<br/>• Ajuste da classe Menu para criação de testes;<br/>• Estudos sobre outros tipos de teste;<br/>• Atualização de README. | 1 hora e 30 minutos |
 | 4   | • Adição de testes de retorno de atributos;<br/>• Atualização do README. | 1 hora |
-| 5   | •  |  |
+| 5   | • Adição de comentários;<br/>• Ajuste de padronização de código;<br/>• Atualização do README. | 30 minutos |
 | 6   | •  |  |
 | 7   | •  |  |
