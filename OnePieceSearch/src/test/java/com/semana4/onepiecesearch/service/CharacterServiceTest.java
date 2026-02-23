@@ -19,4 +19,25 @@ public class CharacterServiceTest {
         assertEquals("320.000.000", resultado.getBounty());
         assertEquals("Mugiwara no Ichimi", resultado.getCrew().getRoman_name());
     }
+
+    @Test
+    void deveRetornarZoroMesmoComDoisNomes() throws JsonProcessingException {
+        RestTemplate restTemplate = new RestTemplate();
+        CharacterService service = new CharacterService(restTemplate);
+
+        CharacterDto resultado = service.searchByName("Roronoa Zoro");
+
+        assertEquals("Roronoa Zoro", resultado.getName());
+    }
+
+    @Test
+    void deveRetornarLuffyMesmoComMaisDeUmNome() throws JsonProcessingException {
+        RestTemplate restTemplate = new RestTemplate();
+        CharacterService service = new CharacterService(restTemplate);
+
+        CharacterDto resultado = service.searchByName("Monkey D Luffy");
+
+        assertEquals("Monkey D Luffy", resultado.getName());
+    }
+
 }
