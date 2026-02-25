@@ -9,11 +9,6 @@ public class CrewDto {
     String roman_name;
     String total_prime;
     String number;
-    boolean is_yonko;
-
-    public boolean isIs_yonko() {
-        return is_yonko;
-    }
 
     public String getNumber() {
         return number;
