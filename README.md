@@ -369,5 +369,40 @@ Inclua pelo menos 2 itens dos seguintes:
 | 3   | • Criação de testes para função do menu;<br/>• Ajuste da classe Menu para criação de testes;<br/>• Estudos sobre outros tipos de teste;<br/>• Atualização de README. | 1 hora e 30 minutos |
 | 4   | • Adição de testes de retorno de atributos;<br/>• Atualização do README. | 1 hora |
 | 5   | • Adição de comentários;<br/>• Ajuste de padronização de código;<br/>• Atualização do README. | 30 minutos |
-| 6   | •  |  |
+| 6   | • Adição de prints e ajuste do README;<br/>• Atualização do README |  |
 | 7   | •  |  |
+
+<strong>Testes Automatizados</strong>
+<br/>
+<br/>
+
+<img width="637" height="64" alt="image" src="https://github.com/user-attachments/assets/6f6260f0-6a7e-4a39-9b89-f46f9a8c4715" />
+
+<br/>
+
+- Esse teste foi usado em todos os Services do projeto, para confirmar se a API estava retornando de forma correta todos os atributos necessários
+
+<br/>
+<br/>
+
+<img width="677" height="137" alt="image" src="https://github.com/user-attachments/assets/5af3a806-4a4f-416b-baf4-3c4b3b174a3e" />
+
+<br/>
+
+- Os testes acima foram feitos no CharacterServiceTest para testar a entrada do usuário e a saída do sistema
+
+<br/>
+<br/>
+
+<img width="371" height="89" alt="image" src="https://github.com/user-attachments/assets/22625584-a632-4908-bd37-30e8589d22e4" />
+
+<br/>
+
+- O teste acima foi feito no menu para testar se a entrada do usuário é um número válido
+
+<br/>
+
+---
+
+<br/>
+
