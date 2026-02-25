@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class OnePieceSearchApplication {
 
-    public static void main(String[] args) {
+    public static void onePieceApplication(String[] args) {
         SpringApplication.run(OnePieceSearchApplication.class, args);
     }
 
