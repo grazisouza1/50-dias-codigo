@@ -24,6 +24,7 @@
 - [Semana 3](#semana3)
 - [Semana 4](#semana4)
 - [Semana 5](#semana5)
+- [Semana 6](#semana6)
 
 <br/>
 
@@ -406,3 +407,17 @@ Inclua pelo menos 2 itens dos seguintes:
 
 <br/>
 
+<h3 id="semana6"> ⚡ Semana 6: Deploy / Docker e otimização. </h3>
+<strong>Objetivo: </strong> Reunir tudo o que foi aprendido ao longo das semanas anteriores e transformar em algo concreto, útil e apresentável.
+&nbsp;
+
+
+| Dia | Task | Tempo de Duração |
+|-----|------|------------------|
+| 1   | • Pesquisa de ferramentas/plataformas;<br/>• Prepração de ambiente;<br/>• Estudo para decidir o projeto final;<br/>• Atualização do README. | 40 minutos |
+| 2   | •  |  |
+| 3   | •  |  |
+| 4   | •  |  |
+| 5   | •  |  |
+| 6   | •  |  |
+| 7   | •  |  |
