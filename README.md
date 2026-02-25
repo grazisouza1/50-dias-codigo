@@ -415,7 +415,7 @@ Inclua pelo menos 2 itens dos seguintes:
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
 | 1   | • Pesquisa de ferramentas/plataformas;<br/>• Prepração de ambiente;<br/>• Estudo para decidir o projeto final;<br/>• Atualização do README. | 40 minutos |
-| 2   | •  |  |
+| 2   | • Testando conexão com o banco;<br/>• Criando tabelas;<br/>• Atualização do README. | 2 horas |
 | 3   | •  |  |
 | 4   | •  |  |
 | 5   | •  |  |
