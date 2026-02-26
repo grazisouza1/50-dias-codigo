@@ -416,7 +416,7 @@ Inclua pelo menos 2 itens dos seguintes:
 |-----|------|------------------|
 | 1   | • Pesquisa de ferramentas/plataformas;<br/>• Prepração de ambiente;<br/>• Estudo para decidir o projeto final;<br/>• Atualização do README. | 40 minutos |
 | 2   | • Testando conexão com o banco;<br/>• Criando tabelas;<br/>• Atualização do README. | 2 horas |
-| 3   | •  |  |
+| 3   | • Estudo sobr o projeto e banco de dados com Java;<br/>• Criação da classe Menu;<br/>• Criação do CustomerDto;<br/>• Criação do StartApplication();<br/>• Atualização do README. | 2 horas |
 | 4   | •  |  |
 | 5   | •  |  |
 | 6   | •  |  |
