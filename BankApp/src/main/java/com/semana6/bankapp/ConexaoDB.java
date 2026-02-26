@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexaoDB {
-     public static void main(String[] args) {
+     public static void db(String[] args) {
          try {
              Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank_app_db?user=bank_user&password=Valid@12");
 
