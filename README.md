@@ -407,17 +407,28 @@ Inclua pelo menos 2 itens dos seguintes:
 
 <br/>
 
-<h3 id="semana6"> ⚡ Semana 6: Deploy / Docker e otimização. </h3>
+<h3 id="semana6"> ⚡ Semana 6: Projeto final + demo (2–3 min) </h3>
 <strong>Objetivo: </strong> Reunir tudo o que foi aprendido ao longo das semanas anteriores e transformar em algo concreto, útil e apresentável.
 &nbsp;
 
+<br/>
+
+✅ 1. Finalizar, polir ou expandir o seu Projeto Prático
+
+<br/>
+
+✅ 2. Preparar uma apresentação curta (2–3 min)
+
+<br/>
+
+✅ 3. Publicar a entrega final
 
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
 | 1   | • Pesquisa de ferramentas/plataformas;<br/>• Prepração de ambiente;<br/>• Estudo para decidir o projeto final;<br/>• Atualização do README. | 40 minutos |
 | 2   | • Testando conexão com o banco;<br/>• Criando tabelas;<br/>• Atualização do README. | 2 horas |
-| 3   | • Estudo sobr o projeto e banco de dados com Java;<br/>• Criação da classe Menu;<br/>• Criação do CustomerDto;<br/>• Criação do StartApplication();<br/>• Atualização do README. | 2 horas |
-| 4   | •  |  |
+| 3   | • Estudo sobre o projeto e banco de dados com Java;<br/>• Criação da classe Menu;<br/>• Criação do CustomerDto;<br/>• Criação do StartApplication();<br/>• Atualização do README. | 2 horas |
+| 4   | • Ajuste de funções do menu;<br/>• Construção de lógica do DAO e DTO do costumer;<br/>• Atualização do README. | 1 hora e 30 minutos |
 | 5   | •  |  |
 | 6   | •  |  |
 | 7   | •  |  |
