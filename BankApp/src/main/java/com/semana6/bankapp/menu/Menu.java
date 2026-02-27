@@ -1,5 +1,7 @@
 package com.semana6.bankapp.menu;
 
+import com.semana6.bankapp.dao.CustomerDao;
+import com.semana6.bankapp.dto.CustomerDto;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
@@ -45,6 +47,57 @@ public class Menu {
     }
 
 
+
+    public void criarCadastro(){
+        System.out.print("Digite seu primeiro nome: ");
+        String typedName = scanner.nextLine().trim();
+
+        if (typedName.isBlank()){
+            System.out.println("O campo não pode estar vazio");
+            return;
+        }
+
+        if(typedName.length() > 30){
+            System.out.println("O primeiro nome deve ter, no máximo, 30 letras");
+            return;
+        }
+
+        System.out.print("Digite seu sobrenome: ");
+        String typedLastName = scanner.nextLine().trim();
+
+        if (typedLastName.isBlank()){
+            System.out.println("O campo não pode estar vazio");
+            return;
+        }
+
+        if(typedLastName.length() > 30){
+            System.out.println("O sobrenome deve ter, no máximo, 30 letras");
+            return;
+        }
+
+        System.out.print("Digite seu email: ");
+        String typedEmail = scanner.nextLine().trim();
+
+        if (typedEmail.isBlank()){
+            System.out.println("O campo não pode estar vazio");
+            return;
+        }
+
+        if(typedEmail.length() > 50){
+            System.out.println("O email deve ter, no máximo, 50 caract*eres");
+            return;
+        }
+
+        CustomerDto objCustomer = new CustomerDto();
+        objCustomer.setFirstName(typedName);
+        objCustomer.setLastName(typedLastName);
+        objCustomer.setEmail(typedEmail);
+
+        CustomerDao objCustomerDao = new CustomerDao();
+        objCustomerDao.cadastrarCliente(objCustomer);
+    }
+
+
     public void startApplication() {
         boolean running = true;
 
@@ -52,7 +105,7 @@ public class Menu {
             System.out.println("\n========= BEM VINDO AO SEU BANCO =========");
             System.out.println("1. Consultar saldo  | 2. Depositar   ");
             System.out.println("3. Sacar            | 4. Transferir   ");
-            System.out.println("5. Sair\n");
+            System.out.println("5. Criar cadastro   | 6. Sair\n");
 
             System.out.print("Insira o número da ação que deseja realizar: ");
             String menuInput = scanner.nextLine();
@@ -78,6 +131,9 @@ public class Menu {
                         System.out.println("Transferir selecionado");
                         break;
                     case 5:
+                        criarCadastro();
+                        break;
+                    case 6:
                         running = false;
                         break;
                     default:
