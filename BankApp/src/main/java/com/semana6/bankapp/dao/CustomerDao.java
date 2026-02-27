@@ -11,7 +11,7 @@ public class CustomerDao {
     PreparedStatement pstm;
 
     public void cadastrarCliente(CustomerDto objCustomer){
-        String sql = "INSERT INTO customers (first_name, last_name, email) values(?, ?, ?)";
+        String sql = "INSERT INTO customers (first_name, last_name, email, created_at) values(?, ?, ?, ?)";
 
         conn = new ConexaoDB().connectDB();
 
@@ -20,6 +20,9 @@ public class CustomerDao {
             pstm.setString(1,objCustomer.getFirstName());
             pstm.setString(2,objCustomer.getLastName());
             pstm.setString(3,objCustomer.getEmail());
+            pstm.setDate(4, java.sql.Date.valueOf(java.time.LocalDate.now()));
+
+            pstm.executeUpdate();
         } catch (Exception erro) {
             System.out.println("CostumerDao" + erro);
         }

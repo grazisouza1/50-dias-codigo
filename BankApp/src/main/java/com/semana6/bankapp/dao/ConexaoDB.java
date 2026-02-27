@@ -13,8 +13,6 @@ public class ConexaoDB {
              conn = DriverManager.getConnection(url);
 
              System.out.println("Recuperei a conexão");
-
-             conn.close();
          } catch (SQLException e){
              System.out.println(e);
          }

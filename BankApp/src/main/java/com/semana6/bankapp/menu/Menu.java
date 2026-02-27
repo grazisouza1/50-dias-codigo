@@ -2,12 +2,14 @@ package com.semana6.bankapp.menu;
 
 import com.semana6.bankapp.dao.CustomerDao;
 import com.semana6.bankapp.dto.CustomerDto;
+import com.semana6.bankapp.validator.InputValidator;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
 @Component
 public class Menu {
+    InputValidator validator = new InputValidator();
     Scanner scanner = new Scanner(System.in);
 
     public Integer processInputMenu(String input) {
@@ -52,41 +54,27 @@ public class Menu {
         System.out.print("Digite seu primeiro nome: ");
         String typedName = scanner.nextLine().trim();
 
-        if (typedName.isBlank()){
-            System.out.println("O campo não pode estar vazio");
-            return;
-        }
-
-        if(typedName.length() > 30){
-            System.out.println("O primeiro nome deve ter, no máximo, 30 letras");
-            return;
-        }
+        validator.isNameValid(typedName);
 
         System.out.print("Digite seu sobrenome: ");
         String typedLastName = scanner.nextLine().trim();
 
-        if (typedLastName.isBlank()){
-            System.out.println("O campo não pode estar vazio");
-            return;
-        }
-
-        if(typedLastName.length() > 30){
-            System.out.println("O sobrenome deve ter, no máximo, 30 letras");
-            return;
-        }
+        validator.isNameValid(typedLastName);
 
         System.out.print("Digite seu email: ");
         String typedEmail = scanner.nextLine().trim();
 
-        if (typedEmail.isBlank()){
-            System.out.println("O campo não pode estar vazio");
-            return;
-        }
+        validator.isEmailValid(typedEmail);
 
-        if(typedEmail.length() > 50){
-            System.out.println("O email deve ter, no máximo, 50 caract*eres");
-            return;
-        }
+        System.out.print("Digite seu telefone (tudo junto, sem caracteres especiais): ");
+        String typedPhoneNumber = scanner.nextLine();
+
+        validator.isPhoneNumberValid(typedPhoneNumber);
+
+        System.out.print("Digite seu CPF/CNPJ (tudo junto, sem caracteres especiais): ");
+        String typedCpfCnpj = scanner.nextLine();
+
+        validator.isCpfCnpjValid(typedCpfCnpj);
 
         CustomerDto objCustomer = new CustomerDto();
         objCustomer.setFirstName(typedName);
