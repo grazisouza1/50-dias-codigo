@@ -47,7 +47,7 @@ public class Menu {
 
             switch (menuOption) {
                 case 1:
-                    System.out.println("Consultar saldo selecionado");
+                    System.out.println();
                     break;
                 case 2:
                     System.out.println("Depositar selecionado");
@@ -221,11 +221,13 @@ public class Menu {
         System.out.println("\nVocê foi cadastrado!\n");
         System.out.println("\nFaça seu login abaixo!\n");
 
-        login(objCustomer);
+        login();
     }
 
-    public void login(CustomerDto objCustomer) throws SQLException {
-        String erro;
+    private CustomerDto usuarioLogado;
+
+    public void login() throws SQLException {
+        CustomerDto cliente;
 
         do {
             System.out.print("Digite seu email: ");
@@ -234,14 +236,18 @@ public class Menu {
             System.out.print("Digite sua senha: ");
             String loginSenha = scanner.nextLine().trim();
 
-            erro = validator.isLoginValid(objCustomer, loginEmail, loginSenha);
+            cliente = customerDao.autenticar(loginEmail, loginSenha);
 
-            if (erro != null) {
-                System.out.println(erro);
+            if (cliente == null) {
+                System.out.println("\nEmail ou senha inválidos\n");
             }
-        } while (erro != null);
+
+        } while (cliente == null);
+
+        this.usuarioLogado = cliente;
 
         System.out.println("\n====== Entrada realizada com sucesso! ======\n");
+        System.out.println("Bem vindo(a), " + cliente.getFirstName());
 
         displayMenu();
     }
@@ -267,7 +273,7 @@ public class Menu {
 
                 switch (cadastroIntInput) {
                     case 1:
-                        System.out.println("teste");
+                        login();
                         break;
                     case 2:
                         System.out.print("Deseja fazer o cadastro? [s/n]: ");

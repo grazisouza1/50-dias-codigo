@@ -26,6 +26,21 @@ public class CustomerDao {
         }
     }
 
+    public boolean validarLogin(String email, String senha) throws SQLException {
+
+        conn = new ConexaoDB().connectDB();
+
+        String sql = "SELECT 1 FROM customers WHERE email = ? AND pass_hash = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+        }
+    }
+
     public boolean cpfJaExiste(String cpf) throws SQLException {
 
         conn = new ConexaoDB().connectDB();
@@ -56,5 +71,29 @@ public class CustomerDao {
 
             pstm.executeUpdate();
         }
+    }
+
+    public CustomerDto autenticar(String email, String senha) throws SQLException {
+
+        conn = new ConexaoDB().connectDB();
+
+        String sql = "SELECT * FROM customers WHERE email = ? AND pass_hash = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                CustomerDto cliente = new CustomerDto();
+                cliente.setId(rs.getInt("customer_id"));
+                cliente.setFirstName(rs.getString("first_name"));
+                cliente.setEmail(rs.getString("email"));
+                return cliente;
+            }
+        }
+
+        return null;
     }
 }
