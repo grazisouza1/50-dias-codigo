@@ -2,16 +2,24 @@ package com.semana6.bankapp.dto;
 
 import java.time.LocalDate;
 
+
+
 public class AccountDto {
+    public enum AccountType {
+        CORRENTE,
+        POUPANCA
+    }
+
+    public enum AccountStatus {
+        ATIVO,
+        BLOQUEADO
+    }
+
     private int id;
     private int customer_id;
-    private enum account_type {
-        CORRENTE, POUPANCA
-    };
+    public AccountType account_type ;
     private float balance;
-    private enum status {
-        ATIVO, BLOQUEADO
-    }
+    public AccountStatus status;
     private LocalDate created_at;
 
     public int getId() {
@@ -30,12 +38,28 @@ public class AccountDto {
         this.customer_id = customer_id;
     }
 
+    public AccountType getAccount_type() {
+        return account_type;
+    }
+
+    public void setAccount_type(AccountType account_type) {
+        this.account_type = account_type;
+    }
+
     public float getBalance() {
         return balance;
     }
 
     public void setBalance(float balance) {
         this.balance = balance;
+    }
+
+    public AccountStatus getStatus(){
+        return status;
+    }
+
+    public void setStatus(AccountStatus status) {
+        this.status = status;
     }
 
     public LocalDate getCreated_at() {

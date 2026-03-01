@@ -20,6 +20,7 @@ public class Menu {
     InputValidator validator = new InputValidator();
     Scanner scanner = new Scanner(System.in);
 
+    private CustomerDto usuarioLogado;
     private final CustomerDao customerDao;
 
     public Menu(CustomerDao customerDao) {
@@ -32,7 +33,8 @@ public class Menu {
             System.out.println("\n========= SELECIONE UMA DAS OPÇẼS =========");
             System.out.println("1. Consultar saldo  | 2. Depositar   ");
             System.out.println("3. Sacar            | 4. Transferir   ");
-            System.out.println("5. Criar cadastro   | 6. Sair\n");
+            System.out.println("5. Criar cadastro   | 6. Criar conta");
+            System.out.println("7. Sair\n");
 
             System.out.print("Insira o número da ação que deseja realizar: ");
             String menuInput = scanner.nextLine();
@@ -47,21 +49,24 @@ public class Menu {
 
             switch (menuOption) {
                 case 1:
-                    System.out.println();
+                    consultarSaldo();
                     break;
                 case 2:
-                    System.out.println("Depositar selecionado");
+                    depositar();
                     break;
                 case 3:
-                    System.out.println("Sacar selecionado");
+                    sacar();
                     break;
                 case 4:
-                    System.out.println("Transferir selecionado");
+                    transferir();
                     break;
                 case 5:
                     criarCadastro();
                     break;
                 case 6:
+                    criarConta();
+                    break;
+                    case 7:
                     System.exit(1);
                     break;
                 default:
@@ -93,7 +98,36 @@ public class Menu {
         }
     }
 
+    public void login() throws SQLException {
+        CustomerDto cliente;
+
+        do {
+            System.out.print("Digite seu email: ");
+            String loginEmail = scanner.nextLine().trim();
+
+            System.out.print("Digite sua senha: ");
+            String loginSenha = scanner.nextLine().trim();
+
+            cliente = customerDao.autenticar(loginEmail, loginSenha);
+
+            if (cliente == null) {
+                System.out.println("\nEmail ou senha inválidos\n");
+            }
+
+        } while (cliente == null);
+
+        this.usuarioLogado = cliente;
+
+        System.out.println("\n====== Entrada realizada com sucesso! ======\n");
+        System.out.println("Bem vindo(a), " + cliente.getFirstName());
+
+        displayMenu();
+    }
+
+
     public void consultarSaldo() {
+        System.out.println("===== Seu saldo atual é: =====");
+        System.out.println("R$");
     }
 
     public void depositar() {
@@ -105,6 +139,10 @@ public class Menu {
     }
 
     public void transferir() {
+
+    }
+
+    public void criarConta() {
 
     }
 
@@ -223,35 +261,6 @@ public class Menu {
 
         login();
     }
-
-    private CustomerDto usuarioLogado;
-
-    public void login() throws SQLException {
-        CustomerDto cliente;
-
-        do {
-            System.out.print("Digite seu email: ");
-            String loginEmail = scanner.nextLine().trim();
-
-            System.out.print("Digite sua senha: ");
-            String loginSenha = scanner.nextLine().trim();
-
-            cliente = customerDao.autenticar(loginEmail, loginSenha);
-
-            if (cliente == null) {
-                System.out.println("\nEmail ou senha inválidos\n");
-            }
-
-        } while (cliente == null);
-
-        this.usuarioLogado = cliente;
-
-        System.out.println("\n====== Entrada realizada com sucesso! ======\n");
-        System.out.println("Bem vindo(a), " + cliente.getFirstName());
-
-        displayMenu();
-    }
-
 
     public void startApplication() throws SQLException {
         boolean running = true;
