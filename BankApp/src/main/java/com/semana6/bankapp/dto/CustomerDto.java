@@ -11,7 +11,6 @@ public class CustomerDto {
     private String email;
     private String phoneNumber;
     private String cpfCnpj;
-    private LocalDate dateOfBirth;
     private LocalDate createdAt;
     private String passHash;
 
@@ -61,14 +60,6 @@ public class CustomerDto {
 
     public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public LocalDate getCreatedAt() {

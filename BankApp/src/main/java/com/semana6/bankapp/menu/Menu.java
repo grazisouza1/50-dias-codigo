@@ -177,30 +177,45 @@ public class Menu {
     }
 
     public void transferir() throws SQLException{
-        System.out.println("\nInsira o telefone da conta para qual deseja transferir: \n");
-        String phone = scanner.nextLine();
-
-        CustomerDto beneficiaryData = customerDao.buscarCustomerPorPhone(phone);
-        //AccountDto beneficiaryAccount = accountDao.buscarContaPorCustomerId(beneficiaryData.getId());
-
         String transferAnswer;
-        do {
-            System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
-            transferAnswer = scanner.nextLine();
 
-            if (!transferAnswer.equals("s") && !transferAnswer.equals("n")) {
-                System.out.println("Selecione uma opção válida (s ou n)");
-                return;
-            }
-        } while(!transferAnswer.equals("s") && !transferAnswer.equals("n"));
+        try {
+            System.out.print("\nInsira o telefone da conta para qual deseja transferir: ");
+            String phone = scanner.nextLine();
 
-        if (transferAnswer == "s"){
-            System.out.print("\nDigite o valor que deseja transferir: \n");
-        } else if (transferAnswer == "n"){
+            CustomerDto beneficiaryData = customerDao.buscarCustomerPorPhone(phone);
+            AccountDto beneficiaryAccount = accountDao.buscarContaPorCustomerId(beneficiaryData.getId());
 
+                System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
+                transferAnswer = scanner.nextLine().trim();
+
+                if (!transferAnswer.equals("s") && !transferAnswer.equals("n")) {
+                    System.out.println("Selecione uma opção válida (s ou n)");
+                    return;
+                }
+
+                if (transferAnswer.equals("s")) {
+                    System.out.print("\nDigite o valor que deseja transferir: \n");
+                    String transferValue = scanner.nextLine();
+
+                    try {
+                        Float transferValueFormated = Float.parseFloat(transferValue);
+
+                        Float novoSaldo = beneficiaryAccount.getBalance() + transferValueFormated;
+                        beneficiaryAccount.setBalance(novoSaldo);
+                        accountDao.atualizarSaldo(beneficiaryAccount.getId(), novoSaldo);
+
+                        System.out.println("\nValor de R$" + transferValueFormated + " transferido para " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "\n");
+                    } catch (NumberFormatException e){
+                        System.out.println(e.getMessage());
+                    }
+                } else if (transferAnswer.equals("n")) {
+                    return;
+                }
+
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
-
-        //beneficiaryAccount.setBalance(beneficiaryAccount.getBalance() + );
     }
 
     public void criarCadastro() throws SQLException {
