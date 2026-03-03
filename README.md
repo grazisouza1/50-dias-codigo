@@ -432,3 +432,7 @@ Inclua pelo menos 2 itens dos seguintes:
 | 5   | • Criação da class Validator;<br/>• Ajuste de conexão com o bacno;<br/>• Atualização do README. | 2 horas |
 | 6   | • Criação da função de login;<br/>• Tratamento de erros de entrada e repetição de dados;<br/>• Atualização do README | 4 horas |
 | 7   | • Criação do AccountDao e CostumerDao;<br/>• Criação e ajuste do AccountDto;<br/>• Adição de validações ao InputValidator;<br/>• Atualização do README. | 3 horas |
+
+| Dia | Task | Tempo de Duração |
+|-----|------|------------------|
+| 1   | • Criação CustomerDao;<br/>• Criação de algumas funções;<br/>• Adição de funções ao AccountDao;<br/>• Criação de métodos para opções do menu;<br/>• Artualização do README. | 4 horas |
