@@ -431,4 +431,4 @@ Inclua pelo menos 2 itens dos seguintes:
 | 4   | • Ajuste de funções do menu;<br/>• Construção de lógica do DAO e DTO do costumer;<br/>• Atualização do README. | 1 hora e 30 minutos |
 | 5   | • Criação da class Validator;<br/>• Ajuste de conexão com o bacno;<br/>• Atualização do README. | 2 horas |
 | 6   | • Criação da função de login;<br/>• Tratamento de erros de entrada e repetição de dados;<br/>• Atualização do README | 4 horas |
-| 7   | •  |  |
+| 7   | • Criação do AccountDao e CostumerDao;<br/>• Criação e ajuste do AccountDto;<br/>• Adição de validações ao InputValidator;<br/>• Atualização do README. | 3 horas |
