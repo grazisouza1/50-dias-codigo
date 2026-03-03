@@ -1,18 +1,14 @@
 package com.semana6.bankapp.menu;
 
 import com.semana6.bankapp.dao.CustomerDao;
+import com.semana6.bankapp.dto.AccountDto;
+import com.semana6.bankapp.dao.AccountDao;
 import com.semana6.bankapp.dto.CustomerDto;
 import com.semana6.bankapp.validator.InputValidator;
 import org.springframework.stereotype.Component;
 
-import java.io.InputStream;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.net.URL;
+
 import java.sql.*;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 @Component
@@ -21,9 +17,13 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
 
     private CustomerDto usuarioLogado;
+    private AccountDto contaLogada;
+
+    private final AccountDao accountDao;
     private final CustomerDao customerDao;
 
-    public Menu(CustomerDao customerDao) {
+    public Menu(AccountDao accountDao, CustomerDao customerDao) {
+        this.accountDao = accountDao;
         this.customerDao = customerDao;
     }
 
@@ -33,8 +33,7 @@ public class Menu {
             System.out.println("\n========= SELECIONE UMA DAS OPÇẼS =========");
             System.out.println("1. Consultar saldo  | 2. Depositar   ");
             System.out.println("3. Sacar            | 4. Transferir   ");
-            System.out.println("5. Criar cadastro   | 6. Criar conta");
-            System.out.println("7. Sair\n");
+            System.out.println("5. Criar cadastro   | 6. Sair\n");
 
             System.out.print("Insira o número da ação que deseja realizar: ");
             String menuInput = scanner.nextLine();
@@ -64,9 +63,6 @@ public class Menu {
                     criarCadastro();
                     break;
                 case 6:
-                    criarConta();
-                    break;
-                    case 7:
                     System.exit(1);
                     break;
                 default:
@@ -117,33 +113,94 @@ public class Menu {
         } while (cliente == null);
 
         this.usuarioLogado = cliente;
+        this.contaLogada = accountDao.buscarContaPorClienteId(cliente.getId());
 
         System.out.println("\n====== Entrada realizada com sucesso! ======\n");
         System.out.println("Bem vindo(a), " + cliente.getFirstName());
-
-        displayMenu();
     }
-
 
     public void consultarSaldo() {
         System.out.println("===== Seu saldo atual é: =====");
-        System.out.println("R$");
+        System.out.println("R$" + contaLogada.getBalance());
     }
 
-    public void depositar() {
+    public void depositar() throws SQLException{
+        String erro;
+        float depositoFloat;
+
+        do {
+            System.out.print("Insira o valor que deseja depositar: ");
+            String deposito = scanner.nextLine();
+
+            erro = validator.isDepositValid(deposito);
+
+            if (erro != null){
+                System.out.println(erro);
+            }
+
+            depositoFloat = Float.parseFloat(deposito);
+        } while (erro != null);
+
+        float novoSaldo = contaLogada.getBalance() + depositoFloat;
+
+        contaLogada.setBalance(novoSaldo);
+
+        accountDao.atualizarSaldo(contaLogada.getId(), novoSaldo);
+
+        System.out.println("\nO valor de R$" + depositoFloat + " foi adicionado à sua conta\n");
+    }
+
+    public void sacar() throws SQLException {
+        String erro;
+        Float saqueFloat;
+
+        do {
+            System.out.print("\nDigite o valor que deseja sacar: ");
+            String saque = scanner.nextLine();
+
+            erro = validator.isWithdrawalValid(saque, contaLogada);
+
+            if(erro != null) {
+                System.out.println(erro);
+            }
+
+            saqueFloat = Float.parseFloat(saque);
+        } while (erro != null);
+
+        float novoSaldo = contaLogada.getBalance() - saqueFloat;
+
+        contaLogada.setBalance(novoSaldo);
+        accountDao.atualizarSaldo(contaLogada.getId(), novoSaldo);
+
+        System.out.println("\nSaque de R$" + saqueFloat + " realizado\n");
 
     }
 
-    public void sacar() {
+    public void transferir() throws SQLException{
+        System.out.println("\nInsira o telefone da conta para qual deseja transferir: \n");
+        String phone = scanner.nextLine();
 
-    }
+        CustomerDto beneficiaryData = customerDao.buscarCustomerPorPhone(phone);
+        //AccountDto beneficiaryAccount = accountDao.buscarContaPorCustomerId(beneficiaryData.getId());
 
-    public void transferir() {
+        String transferAnswer;
+        do {
+            System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
+            transferAnswer = scanner.nextLine();
 
-    }
+            if (!transferAnswer.equals("s") && !transferAnswer.equals("n")) {
+                System.out.println("Selecione uma opção válida (s ou n)");
+                return;
+            }
+        } while(!transferAnswer.equals("s") && !transferAnswer.equals("n"));
 
-    public void criarConta() {
+        if (transferAnswer == "s"){
+            System.out.print("\nDigite o valor que deseja transferir: \n");
+        } else if (transferAnswer == "n"){
 
+        }
+
+        //beneficiaryAccount.setBalance(beneficiaryAccount.getBalance() + );
     }
 
     public void criarCadastro() throws SQLException {
@@ -249,6 +306,8 @@ public class Menu {
         objCustomer.setCpfCnpj(typedCpfCnpj);
         objCustomer.setPassHash(typedPassword);
 
+        this.usuarioLogado = objCustomer;
+
         try {
             customerDao.cadastrarCliente(objCustomer);
             System.out.println("Cadastro realizado.");
@@ -256,60 +315,67 @@ public class Menu {
             System.out.println("CPF já cadastrado.");
         }
 
-        System.out.println("\nVocê foi cadastrado!\n");
-        System.out.println("\nFaça seu login abaixo!\n");
+        AccountDto objAccount = new AccountDto();
+        objAccount.setCustomer_id(usuarioLogado.getId());
+        objAccount.setAccount_type(AccountDto.AccountType.CORRENTE);
+        objAccount.setBalance(0);
+        objAccount.setStatus(AccountDto.AccountStatus.ATIVO);
 
-        login();
+        accountDao.cadastrarConta(objAccount);
+
+        System.out.println("\nVocê foi cadastrado!\n");
     }
 
     public void startApplication() throws SQLException {
-        boolean running = true;
+        while(true) {
+            if (usuarioLogado == null) {
+                System.out.println("\n========= BEM VINDO AO BANK APP =========");
+                System.out.println("-------- Você já é cadastrado? --------");
+                System.out.println("1. Sim       | 2. Não         ");
 
-        while(running) {
-            System.out.println("\n========= BEM VINDO AO BANK APP =========");
-            System.out.println("-------- Você já é cadastrado? --------");
-            System.out.println("1. Sim       | 2. Não         ");
+                System.out.print("\nEscolha uma opção: ");
+                String cadastroInput = scanner.nextLine();
 
-            System.out.print("\nEscolha uma opção: ");
-            String cadastroInput = scanner.nextLine();
+                try {
+                    Integer cadastroIntInput = processInputCadastro(cadastroInput);
 
-            try {
-                Integer cadastroIntInput = processInputCadastro(cadastroInput);
+                    if (cadastroIntInput == null) {
+                        continue;
+                    }
 
-                if (cadastroIntInput == null) {
-                    continue;
+                    switch (cadastroIntInput) {
+                        case 1:
+                            login();
+                            break;
+                        case 2:
+                            System.out.print("Deseja fazer o cadastro? [s/n]: ");
+                            String escolhaCadastrar = scanner.nextLine().trim();
+
+                            if (!escolhaCadastrar.equals("s") && !escolhaCadastrar.equals("n")) {
+                                System.out.println("\nSelecione uma opção válida\n");
+                                return;
+                            }
+
+                            if (escolhaCadastrar.equals("n")) {
+                                System.out.println("\nSaindo da aplicação\n");
+                                System.exit(0);
+                            }
+
+                            if (escolhaCadastrar.equals("s")) {
+                                criarCadastro();
+                            }
+
+                            break;
+                        default:
+                            System.out.println("Entrada inválida");
+                            break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("\nA opção selecionada deve ser um número\n");
+                    return;
                 }
-
-                switch (cadastroIntInput) {
-                    case 1:
-                        login();
-                        break;
-                    case 2:
-                        System.out.print("Deseja fazer o cadastro? [s/n]: ");
-                        String escolhaCadastrar = scanner.nextLine().trim();
-
-                        if(!escolhaCadastrar.equals("s") && !escolhaCadastrar.equals("n")){
-                            System.out.println("\nSelecione uma opção válida\n");
-                            return;
-                        }
-
-                        if (escolhaCadastrar.equals("n")){
-                            System.out.println("\nSaindo da aplicação\n");
-                            running = false;
-                        }
-
-                        if (escolhaCadastrar.equals("s")) {
-                            criarCadastro();
-                        }
-
-                        break;
-                    default:
-                        System.out.println("Entrada inválida");
-                        break;
-                }
-            }catch (NumberFormatException e){
-                System.out.println("\nA opção selecionada deve ser um número\n");
-                return;
+            } else {
+                displayMenu();
             }
         }
 
