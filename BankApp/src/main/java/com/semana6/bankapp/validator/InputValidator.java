@@ -1,6 +1,7 @@
 package com.semana6.bankapp.validator;
 
-import com.semana6.bankapp.dto.CustomerDto;
+import com.semana6.bankapp.dto.AccountDto;
+
 
 public class InputValidator {
 
@@ -87,13 +88,37 @@ public class InputValidator {
         return null;
     }
 
-    public String isLoginValid(CustomerDto objCustomer, String loginEmail, String loginSenha) {
-        if (!loginEmail.equals(objCustomer.getEmail())){
-            return "\nEmail inválido\n";
+    public String isDepositValid (String input) {
+        try {
+            float depositoInt = Float.parseFloat(input);
+            if (input.isBlank()) {
+                return "\nO campo não pode ser vazio\n";
+            }
+
+            if (depositoInt < 0) {
+                return "\nInsira um número acima de 0\n";
+            }
+
+        } catch (NumberFormatException e) {
+            return "\nO valor deve ser um número válido\n";
         }
 
-        if(!loginSenha.equals(objCustomer.getPassHash())) {
-            return "\nSenha inválida\n";
+        return null;
+    }
+
+    public String isWithdrawalValid (String input, AccountDto accountDto){
+        if (input.isBlank()) {
+            return "\nO campo não pode ser vazio\n";
+        }
+
+        try {
+            float withdrawalFloat = Float.parseFloat(input);
+
+            if (withdrawalFloat >  accountDto.getBalance()) {
+                return "\nVocê não tem esse valor na sua conta\n";
+            }
+        } catch (NumberFormatException e){
+            return "\nA opção deve ser um número\n";
         }
 
         return null;
