@@ -1,5 +1,6 @@
 package com.semana6.bankapp.dao;
 
+import com.semana6.bankapp.dto.AccountDto;
 import com.semana6.bankapp.dto.CustomerDto;
 import org.springframework.stereotype.Repository;
 
@@ -60,7 +61,7 @@ public class CustomerDao {
 
         String sql = "INSERT INTO customers (first_name, last_name, email, phone_number, cpf_cnpj, pass_hash, created_at) values(?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+        try (PreparedStatement pstm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstm.setString(1,objCustomer.getFirstName());
             pstm.setString(2,objCustomer.getLastName());
             pstm.setString(3,objCustomer.getEmail());
@@ -70,7 +71,14 @@ public class CustomerDao {
             pstm.setDate(7, Date.valueOf(java.time.LocalDate.now()));
 
             pstm.executeUpdate();
+
+            ResultSet rs = pstm.getGeneratedKeys();
+
+            if (rs.next()) {
+                objCustomer.setId(rs.getInt(1));
+            }
         }
+
     }
 
     public CustomerDto autenticar(String email, String senha) throws SQLException {
@@ -94,6 +102,28 @@ public class CustomerDao {
             }
         }
 
+        return null;
+    }
+
+    public CustomerDto buscarCustomerPorPhone(String phoneNumber) throws SQLException {
+        Connection conn = new ConexaoDB().connectDB();
+
+        String sql = "SELECT * FROM customers WHERE phone_number = ?";
+
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setString(1, phoneNumber);
+
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                CustomerDto cliente = new CustomerDto();
+                cliente.setId(rs.getInt("customer_id"));
+                cliente.setPhoneNumber(rs.getString("phone_number"));
+                cliente.setFirstName(rs.getString("first_name"));
+                cliente.setLastName(rs.getString("last_name"));
+                return cliente;
+            }
+        }
         return null;
     }
 }
