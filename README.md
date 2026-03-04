@@ -25,6 +25,7 @@
 - [Semana 4](#semana4)
 - [Semana 5](#semana5)
 - [Semana 6](#semana6)
+- [Semana 7](#semana7)
 
 <br/>
 
@@ -412,6 +413,7 @@ Inclua pelo menos 2 itens dos seguintes:
 &nbsp;
 
 <br/>
+<br/>
 
 ✅ 1. Finalizar, polir ou expandir o seu Projeto Prático
 
@@ -433,6 +435,11 @@ Inclua pelo menos 2 itens dos seguintes:
 | 6   | • Criação da função de login;<br/>• Tratamento de erros de entrada e repetição de dados;<br/>• Atualização do README | 4 horas |
 | 7   | • Criação do AccountDao e CostumerDao;<br/>• Criação e ajuste do AccountDto;<br/>• Adição de validações ao InputValidator;<br/>• Atualização do README. | 3 horas |
 
+<h3 id="semana7">⚡ Semana 7</h3>
+
+<br/>
+
 | Dia | Task | Tempo de Duração |
 |-----|------|------------------|
 | 1   | • Criação CustomerDao;<br/>• Criação de algumas funções;<br/>• Adição de funções ao AccountDao;<br/>• Criação de métodos para opções do menu;<br/>• Artualização do README. | 4 horas |
+| 2   | • Finalização na função de transferir;<br/>• Ajuste de CustomerDto;<br/>• Atualização README. | 1 hora e 30 minutos |
