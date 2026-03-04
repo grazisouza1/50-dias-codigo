@@ -30,7 +30,7 @@ public class Menu {
     public void displayMenu() throws SQLException {
         String erro;
         do {
-            System.out.println("\n========= SELECIONE UMA DAS OPÇẼS =========");
+            System.out.println("========= SELECIONE UMA DAS OPÇẼS =========");
             System.out.println("1. Consultar saldo  | 2. Depositar   ");
             System.out.println("3. Sacar            | 4. Transferir   ");
             System.out.println("5. Criar cadastro   | 6. Sair\n");
@@ -66,7 +66,7 @@ public class Menu {
                     System.exit(1);
                     break;
                 default:
-                    System.out.println("Entrada inválida");
+                    System.out.println("\nEntrada inválida\n");
                     break;
             }
         }
@@ -100,6 +100,7 @@ public class Menu {
         do {
             System.out.print("Digite seu email: ");
             String loginEmail = scanner.nextLine().trim();
+
 
             System.out.print("Digite sua senha: ");
             String loginSenha = scanner.nextLine().trim();
@@ -190,12 +191,12 @@ public class Menu {
                 transferAnswer = scanner.nextLine().trim();
 
                 if (!transferAnswer.equals("s") && !transferAnswer.equals("n")) {
-                    System.out.println("Selecione uma opção válida (s ou n)");
+                    System.out.print("Selecione uma opção válida (s ou n)");
                     return;
                 }
 
                 if (transferAnswer.equals("s")) {
-                    System.out.print("\nDigite o valor que deseja transferir: \n");
+                    System.out.print("\nDigite o valor que deseja transferir: ");
                     String transferValue = scanner.nextLine();
 
                     try {
@@ -342,6 +343,7 @@ public class Menu {
     }
 
     public void startApplication() throws SQLException {
+        String escolhaCadastrar;
         while(true) {
             if (usuarioLogado == null) {
                 System.out.println("\n========= BEM VINDO AO BANK APP =========");
@@ -363,36 +365,37 @@ public class Menu {
                             login();
                             break;
                         case 2:
-                            System.out.print("Deseja fazer o cadastro? [s/n]: ");
-                            String escolhaCadastrar = scanner.nextLine().trim();
+                            do {
+                                System.out.print("Deseja fazer o cadastro? [s/n]: ");
+                                escolhaCadastrar = scanner.nextLine().trim();
 
-                            if (!escolhaCadastrar.equals("s") && !escolhaCadastrar.equals("n")) {
-                                System.out.println("\nSelecione uma opção válida\n");
-                                return;
+                                if (!escolhaCadastrar.equals("s") && !escolhaCadastrar.equals("n")) {
+                                    System.out.println("\nSelecione uma opção válida (s ou n)\n");
+                                }
+                            } while (!escolhaCadastrar.equals("s") && !escolhaCadastrar.equals("n"));
+
+                                if (escolhaCadastrar.equals("n")) {
+                                    System.out.println("\nSaindo da aplicação\n");
+                                    System.exit(0);
+                                }
+
+                                if (escolhaCadastrar.equals("s")) {
+                                    criarCadastro();
+                                }
+
+                                break;
+                                default:
+                                    System.out.println("Entrada inválida");
+                                    break;
                             }
-
-                            if (escolhaCadastrar.equals("n")) {
-                                System.out.println("\nSaindo da aplicação\n");
-                                System.exit(0);
-                            }
-
-                            if (escolhaCadastrar.equals("s")) {
-                                criarCadastro();
-                            }
-
-                            break;
-                        default:
-                            System.out.println("Entrada inválida");
-                            break;
+                    } catch(NumberFormatException e){
+                        System.out.println("\nA opção selecionada deve ser um número\n");
+                        return;
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("\nA opção selecionada deve ser um número\n");
-                    return;
+                } else{
+                    displayMenu();
                 }
-            } else {
-                displayMenu();
             }
-        }
 
 
     }
