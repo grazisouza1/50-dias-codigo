@@ -443,3 +443,4 @@ Inclua pelo menos 2 itens dos seguintes:
 |-----|------|------------------|
 | 1   | • Criação CustomerDao;<br/>• Criação de algumas funções;<br/>• Adição de funções ao AccountDao;<br/>• Criação de métodos para opções do menu;<br/>• Artualização do README. | 4 horas |
 | 2   | • Finalização na função de transferir;<br/>• Ajuste de CustomerDto;<br/>• Atualização README. | 1 hora e 30 minutos |
+| 3   | • Ajuste de retorno de pergunta;<br/>• Finalização da apresentação;<br/>• Atualização do README | 1 hora |
