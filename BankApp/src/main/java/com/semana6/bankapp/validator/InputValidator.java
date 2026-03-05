@@ -26,6 +26,9 @@ public class InputValidator {
             return "\nO campo deve ter, no máximo, 50 caracteres\n";
         }
 
+        if(!input.contains("@") && !input.contains(".com")){
+            return "\nEmail inválido, insira novamente\n";
+        }
 
         return null;
     }
@@ -35,8 +38,8 @@ public class InputValidator {
             return "\nO campo não pode estar vazio\n";
         }
 
-        if(input.length() > 12){
-            return "\nO campo deve ter, no máximo, 12 caracteres\n";
+        if(input.trim().length() != 11){
+            return "\nO campo deve ter 11 caracteres\n";
         }
         return null;
     }
@@ -46,8 +49,8 @@ public class InputValidator {
             return "\nO campo não pode estar vazio\n";
         }
 
-        if(input.length() > 11){
-            return "\nO cpf deve ter, no máximo, 11 letras\n";
+        if(input.length() != 11){
+            return "\nO cpf deve ter 11 números\n";
         }
 
         return null;

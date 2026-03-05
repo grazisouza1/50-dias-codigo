@@ -11,8 +11,6 @@ public class ConexaoDB {
          try {
              String url = "jdbc:mysql://localhost:3306/bank_app_db?user=bank_user&password=Valid@12";
              conn = DriverManager.getConnection(url);
-
-             System.out.println("Recuperei a conexão");
          } catch (SQLException e){
              System.out.println(e);
          }

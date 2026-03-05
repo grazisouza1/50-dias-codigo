@@ -96,14 +96,32 @@ public class Menu {
 
     public void login() throws SQLException {
         CustomerDto cliente;
+        String erro;
+        String loginEmail;
+        String loginSenha;
 
         do {
-            System.out.print("Digite seu email: ");
-            String loginEmail = scanner.nextLine().trim();
+            do {
+                System.out.print("Digite seu email: ");
+                loginEmail = scanner.nextLine().trim();
 
+                erro = validator.isEmailValid(loginEmail);
 
-            System.out.print("Digite sua senha: ");
-            String loginSenha = scanner.nextLine().trim();
+                if (erro != null){
+                    System.out.println("\nEmail inválido, insira novamente\n");
+                }
+            } while (erro != null);
+
+            do {
+                System.out.print("Digite sua senha: ");
+                loginSenha = scanner.nextLine().trim();
+
+                erro = validator.isPasswordValid(loginSenha);
+
+                if (erro != null){
+                    System.out.println("\nSenha inválida, insira novamente\n");
+                }
+            } while (erro != null);
 
             cliente = customerDao.autenticar(loginEmail, loginSenha);
 
