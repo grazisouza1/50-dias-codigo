@@ -30,7 +30,7 @@ public class Menu {
     public void displayMenu() throws SQLException {
         String erro;
         do {
-            System.out.println("========= SELECIONE UMA DAS OPÇẼS =========");
+            System.out.println("\n========= SELECIONE UMA DAS OPÇẼS =========");
             System.out.println("1. Consultar saldo  | 2. Depositar   ");
             System.out.println("3. Sacar            | 4. Transferir   ");
             System.out.println("5. Criar cadastro   | 6. Sair\n");
@@ -99,6 +99,8 @@ public class Menu {
         String erro;
         String loginEmail;
         String loginSenha;
+
+        System.out.println("\n===== Faça seu login =====\n");
 
         do {
             do {
@@ -340,6 +342,7 @@ public class Menu {
         objCustomer.setCpfCnpj(typedCpfCnpj);
         objCustomer.setPassHash(typedPassword);
 
+
         this.usuarioLogado = objCustomer;
 
         try {
@@ -358,6 +361,8 @@ public class Menu {
         accountDao.cadastrarConta(objAccount);
 
         System.out.println("\nVocê foi cadastrado!\n");
+
+        login();
     }
 
     public void startApplication() throws SQLException {
