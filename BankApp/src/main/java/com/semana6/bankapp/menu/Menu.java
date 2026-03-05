@@ -16,8 +16,8 @@ public class Menu {
     InputValidator validator = new InputValidator();
     Scanner scanner = new Scanner(System.in);
 
-    private CustomerDto usuarioLogado;
-    private AccountDto contaLogada;
+    private CustomerDto loggedInUser;
+    private AccountDto loggedInAccount;
 
     private final AccountDao accountDao;
     private final CustomerDao customerDao;
@@ -48,19 +48,19 @@ public class Menu {
 
             switch (menuOption) {
                 case 1:
-                    consultarSaldo();
+                    checkBalance();
                     break;
                 case 2:
-                    depositar();
+                    deposit();
                     break;
                 case 3:
-                    sacar();
+                    withdraw();
                     break;
                 case 4:
-                    transferir();
+                    transfer();
                     break;
                 case 5:
-                    criarCadastro();
+                    createRegistration();
                     break;
                 case 6:
                     System.exit(1);
@@ -73,7 +73,7 @@ public class Menu {
         while (erro != null) ;
     }
 
-    public Integer processInputCadastro(String input) {
+    public Integer processRegisterInput(String input) {
         if (input.isBlank()){
             System.out.println("O campo não pode ser vazio");
             return null;
@@ -95,7 +95,7 @@ public class Menu {
     }
 
     public void login() throws SQLException {
-        CustomerDto cliente;
+        CustomerDto customer;
         String erro;
         String loginEmail;
         String loginSenha;
@@ -125,29 +125,29 @@ public class Menu {
                 }
             } while (erro != null);
 
-            cliente = customerDao.autenticar(loginEmail, loginSenha);
+            customer = customerDao.authenticate(loginEmail, loginSenha);
 
-            if (cliente == null) {
+            if (customer == null) {
                 System.out.println("\nEmail ou senha inválidos\n");
             }
 
-        } while (cliente == null);
+        } while (customer == null);
 
-        this.usuarioLogado = cliente;
-        this.contaLogada = accountDao.buscarContaPorClienteId(cliente.getId());
+        this.loggedInUser = customer;
+        this.loggedInAccount = accountDao.searchAccountByCustomerId(customer.getId());
 
         System.out.println("\n====== Entrada realizada com sucesso! ======\n");
-        System.out.println("Bem vindo(a), " + cliente.getFirstName());
+        System.out.println("Bem vindo(a), " + customer.getFirstName());
     }
 
-    public void consultarSaldo() {
+    public void checkBalance() {
         System.out.println("===== Seu saldo atual é: =====");
-        System.out.println("R$" + contaLogada.getBalance());
+        System.out.println("R$" + loggedInAccount.getBalance());
     }
 
-    public void depositar() throws SQLException{
+    public void deposit() throws SQLException{
         String erro;
-        float depositoFloat;
+        float floatDeposit;
 
         do {
             System.out.print("Insira o valor que deseja depositar: ");
@@ -159,53 +159,53 @@ public class Menu {
                 System.out.println(erro);
             }
 
-            depositoFloat = Float.parseFloat(deposito);
+            floatDeposit = Float.parseFloat(deposito);
         } while (erro != null);
 
-        float novoSaldo = contaLogada.getBalance() + depositoFloat;
+        float newBalance = loggedInAccount.getBalance() + floatDeposit;
 
-        contaLogada.setBalance(novoSaldo);
+        loggedInAccount.setBalance(newBalance);
 
-        accountDao.atualizarSaldo(contaLogada.getId(), novoSaldo);
+        accountDao.updateBalance(loggedInAccount.getId(), newBalance);
 
-        System.out.println("\nO valor de R$" + depositoFloat + " foi adicionado à sua conta\n");
+        System.out.println("\nO valor de R$" + floatDeposit + " foi adicionado à sua conta\n");
     }
 
-    public void sacar() throws SQLException {
+    public void withdraw() throws SQLException {
         String erro;
-        Float saqueFloat;
+        Float floatWithdraw;
 
         do {
-            System.out.print("\nDigite o valor que deseja sacar: ");
-            String saque = scanner.nextLine();
+            System.out.print("\nDigite o valor que deseja withdraw: ");
+            String withdraw = scanner.nextLine();
 
-            erro = validator.isWithdrawalValid(saque, contaLogada);
+            erro = validator.isWithdrawalValid(withdraw, loggedInAccount);
 
             if(erro != null) {
                 System.out.println(erro);
             }
 
-            saqueFloat = Float.parseFloat(saque);
+            floatWithdraw = Float.parseFloat(withdraw);
         } while (erro != null);
 
-        float novoSaldo = contaLogada.getBalance() - saqueFloat;
+        float newWithdraw = loggedInAccount.getBalance() - floatWithdraw;
 
-        contaLogada.setBalance(novoSaldo);
-        accountDao.atualizarSaldo(contaLogada.getId(), novoSaldo);
+        loggedInAccount.setBalance(newWithdraw);
+        accountDao.updateBalance(loggedInAccount.getId(), newWithdraw);
 
-        System.out.println("\nSaque de R$" + saqueFloat + " realizado\n");
+        System.out.println("\nSaque de R$" + floatWithdraw + " realizado\n");
 
     }
 
-    public void transferir() throws SQLException{
+    public void transfer() throws SQLException{
         String transferAnswer;
 
         try {
             System.out.print("\nInsira o telefone da conta para qual deseja transferir: ");
             String phone = scanner.nextLine();
 
-            CustomerDto beneficiaryData = customerDao.buscarCustomerPorPhone(phone);
-            AccountDto beneficiaryAccount = accountDao.buscarContaPorCustomerId(beneficiaryData.getId());
+            CustomerDto beneficiaryData = customerDao.searchCustomerByPhone(phone);
+            AccountDto beneficiaryAccount = accountDao.searchAccountByCustomerId(beneficiaryData.getId());
 
                 System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
                 transferAnswer = scanner.nextLine().trim();
@@ -222,9 +222,9 @@ public class Menu {
                     try {
                         Float transferValueFormated = Float.parseFloat(transferValue);
 
-                        Float novoSaldo = beneficiaryAccount.getBalance() + transferValueFormated;
-                        beneficiaryAccount.setBalance(novoSaldo);
-                        accountDao.atualizarSaldo(beneficiaryAccount.getId(), novoSaldo);
+                        Float newWithdraw = beneficiaryAccount.getBalance() + transferValueFormated;
+                        beneficiaryAccount.setBalance(newWithdraw);
+                        accountDao.updateBalance(beneficiaryAccount.getId(), newWithdraw);
 
                         System.out.println("\nValor de R$" + transferValueFormated + " transferido para " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "\n");
                     } catch (NumberFormatException e){
@@ -239,7 +239,7 @@ public class Menu {
         }
     }
 
-    public void criarCadastro() throws SQLException {
+    public void createRegistration() throws SQLException {
         String typedName;
         String typedLastName;
         String typedEmail;
@@ -283,7 +283,7 @@ public class Menu {
                 continue;
             }
 
-            if (customerDao.emailJaExiste(typedEmail)) {
+            if (customerDao.emailAlreadyExists(typedEmail)) {
                 System.out.println("\nEmail já cadastrado.\n");
                 erro = "email existente";
             } else {
@@ -314,7 +314,7 @@ public class Menu {
                 continue;
             }
 
-            if(customerDao.cpfJaExiste(typedCpfCnpj)) {
+            if(customerDao.cpfAlreadyExists(typedCpfCnpj)) {
                 System.out.println("\nCPF/CNPJ já existente\n");
                 erro = "cpf/cnpj existente";
             } else{
@@ -343,22 +343,22 @@ public class Menu {
         objCustomer.setPassHash(typedPassword);
 
 
-        this.usuarioLogado = objCustomer;
+        this.loggedInUser = objCustomer;
 
         try {
-            customerDao.cadastrarCliente(objCustomer);
+            customerDao.registerCustomer(objCustomer);
             System.out.println("Cadastro realizado.");
         } catch (SQLIntegrityConstraintViolationException e) {
             System.out.println("CPF já cadastrado.");
         }
 
         AccountDto objAccount = new AccountDto();
-        objAccount.setCustomer_id(usuarioLogado.getId());
+        objAccount.setCustomer_id(loggedInUser.getId());
         objAccount.setAccount_type(AccountDto.AccountType.CORRENTE);
         objAccount.setBalance(0);
         objAccount.setStatus(AccountDto.AccountStatus.ATIVO);
 
-        accountDao.cadastrarConta(objAccount);
+        accountDao.registerAccount(objAccount);
 
         System.out.println("\nVocê foi cadastrado!\n");
 
@@ -366,44 +366,44 @@ public class Menu {
     }
 
     public void startApplication() throws SQLException {
-        String escolhaCadastrar;
+        String registerChoice;
         while(true) {
-            if (usuarioLogado == null) {
+            if (loggedInUser == null) {
                 System.out.println("\n========= BEM VINDO AO BANK APP =========");
                 System.out.println("-------- Você já é cadastrado? --------");
                 System.out.println("1. Sim       | 2. Não         ");
 
                 System.out.print("\nEscolha uma opção: ");
-                String cadastroInput = scanner.nextLine();
+                String registerInput = scanner.nextLine();
 
                 try {
-                    Integer cadastroIntInput = processInputCadastro(cadastroInput);
+                    Integer registerIntInput = processRegisterInput(registerInput);
 
-                    if (cadastroIntInput == null) {
+                    if (registerIntInput == null) {
                         continue;
                     }
 
-                    switch (cadastroIntInput) {
+                    switch (registerIntInput) {
                         case 1:
                             login();
                             break;
                         case 2:
                             do {
                                 System.out.print("Deseja fazer o cadastro? [s/n]: ");
-                                escolhaCadastrar = scanner.nextLine().trim();
+                                registerChoice = scanner.nextLine().trim();
 
-                                if (!escolhaCadastrar.equals("s") && !escolhaCadastrar.equals("n")) {
+                                if (!registerChoice.equals("s") && !registerChoice.equals("n")) {
                                     System.out.println("\nSelecione uma opção válida (s ou n)\n");
                                 }
-                            } while (!escolhaCadastrar.equals("s") && !escolhaCadastrar.equals("n"));
+                            } while (!registerChoice.equals("s") && !registerChoice.equals("n"));
 
-                                if (escolhaCadastrar.equals("n")) {
+                                if (registerChoice.equals("n")) {
                                     System.out.println("\nSaindo da aplicação\n");
                                     System.exit(0);
                                 }
 
-                                if (escolhaCadastrar.equals("s")) {
-                                    criarCadastro();
+                                if (registerChoice.equals("s")) {
+                                    createRegistration();
                                 }
 
                                 break;

@@ -12,7 +12,7 @@ public class AccountDao {
     Connection conn;
     PreparedStatement pstm;
 
-    public void cadastrarConta(AccountDto objAccountDto) throws SQLException {
+    public void registerAccount(AccountDto objAccountDto) throws SQLException {
         conn = new ConexaoDB().connectDB();
 
         String sql = "INSERT INTO accounts (account_id, customer_id, account_type, balance, status, created_at) values(?, ?, ?, ?, ?, ?)";
@@ -29,30 +29,30 @@ public class AccountDao {
         }
     }
 
-    public AccountDto buscarContaPorClienteId(int customerId) throws SQLException {
+    public AccountDto searchAccountByCustomerId(int customerId) throws SQLException {
 
         Connection conn = new ConexaoDB().connectDB();
 
         String sql = "SELECT * FROM accounts WHERE customer_id = ?";
 
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setLong(1, customerId);
+        try (PreparedStatement psmt = conn.prepareStatement(sql)) {
+            psmt.setLong(1, customerId);
 
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = psmt.executeQuery();
 
             if (rs.next()) {
-                AccountDto conta = new AccountDto();
-                conta.setId(rs.getInt("account_id"));
-                conta.setCustomer_id(rs.getInt("customer_id"));
-                conta.setBalance(rs.getFloat("balance"));
-                return conta;
+                AccountDto account = new AccountDto();
+                account.setId(rs.getInt("account_id"));
+                account.setCustomer_id(rs.getInt("customer_id"));
+                account.setBalance(rs.getFloat("balance"));
+                return account;
             }
         }
 
         return null;
     }
 
-    public void atualizarSaldo (int accountId, float novoSaldo) throws SQLException {
+    public void updateBalance (int accountId, float novoSaldo) throws SQLException {
         String sql = "UPDATE accounts SET balance = ? WHERE account_id = ?";
 
         Connection conn = new ConexaoDB().connectDB();
@@ -63,26 +63,5 @@ public class AccountDao {
         pstm.executeUpdate();
     }
 
-    public AccountDto buscarContaPorCustomerId(int id) throws SQLException {
-        Connection conn = new ConexaoDB().connectDB();
-
-        String sql = "SELECT * FROM accounts WHERE customer_id = ?";
-
-        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
-            pstm.setInt(1, id);
-
-            ResultSet rs = pstm.executeQuery();
-
-            if (rs.next()) {
-                AccountDto conta = new AccountDto();
-                conta.setId(rs.getInt("account_id"));
-                conta.setCustomer_id(rs.getInt("customer_id"));
-                conta.setBalance(rs.getFloat("balance"));
-                return conta;
-            }
-        }
-
-        return null;
-    }
 }
 

@@ -14,48 +14,48 @@ public class CustomerDao {
     Connection conn;
     PreparedStatement pstm;
 
-    public boolean emailJaExiste(String email) throws SQLException {
+    public boolean emailAlreadyExists(String email) throws SQLException {
 
         conn = new ConexaoDB().connectDB();
 
         String sql = "SELECT 1 FROM customers WHERE email = ?";
 
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, email);
-            ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setString(1, email);
+            ResultSet rs = pstm.executeQuery();
             return rs.next();
         }
     }
 
-    public boolean validarLogin(String email, String senha) throws SQLException {
+    public boolean validateLogin(String email, String senha) throws SQLException {
 
         conn = new ConexaoDB().connectDB();
 
         String sql = "SELECT 1 FROM customers WHERE email = ? AND pass_hash = ?";
 
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, email);
-            stmt.setString(2, senha);
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setString(1, email);
+            pstm.setString(2, senha);
 
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = pstm.executeQuery();
             return rs.next();
         }
     }
 
-    public boolean cpfJaExiste(String cpf) throws SQLException {
+    public boolean cpfAlreadyExists(String cpf) throws SQLException {
 
         conn = new ConexaoDB().connectDB();
 
         String sql = "SELECT 1 FROM customers WHERE cpf_cnpj = ?";
 
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, cpf);
-            ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setString(1, cpf);
+            ResultSet rs = pstm.executeQuery();
             return rs.next();
         }
     }
 
-    public void cadastrarCliente(CustomerDto objCustomer) throws SQLException {
+    public void registerCustomer(CustomerDto objCustomer) throws SQLException {
 
         conn = new ConexaoDB().connectDB();
 
@@ -81,7 +81,7 @@ public class CustomerDao {
 
     }
 
-    public CustomerDto autenticar(String email, String senha) throws SQLException {
+    public CustomerDto authenticate(String email, String senha) throws SQLException {
 
         conn = new ConexaoDB().connectDB();
 
@@ -94,18 +94,18 @@ public class CustomerDao {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                CustomerDto cliente = new CustomerDto();
-                cliente.setId(rs.getInt("customer_id"));
-                cliente.setFirstName(rs.getString("first_name"));
-                cliente.setEmail(rs.getString("email"));
-                return cliente;
+                CustomerDto customer = new CustomerDto();
+                customer.setId(rs.getInt("customer_id"));
+                customer.setFirstName(rs.getString("first_name"));
+                customer.setEmail(rs.getString("email"));
+                return customer;
             }
         }
 
         return null;
     }
 
-    public CustomerDto buscarCustomerPorPhone(String phoneNumber) throws SQLException {
+    public CustomerDto searchCustomerByPhone(String phoneNumber) throws SQLException {
         Connection conn = new ConexaoDB().connectDB();
 
         String sql = "SELECT * FROM customers WHERE phone_number = ?";
