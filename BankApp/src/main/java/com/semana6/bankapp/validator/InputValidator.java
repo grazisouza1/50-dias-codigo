@@ -122,7 +122,7 @@ public class InputValidator {
         return null;
     }
 
-    public String isWithdrawalValid (String input, AccountDto accountDto){
+    public String isWithdrawlValid (String input, AccountDto accountDto){
         if (input.isBlank()) {
             return "\nO campo não pode ser vazio\n";
         }
