@@ -14,6 +14,10 @@ public class InputValidator {
             return "\nO primeiro nome deve ter, no máximo, 30 letras\n";
         }
 
+        if(input.matches(".*\\d.*")){
+            return "\nEsse campo não pode conter números\n";
+        }
+
         return null;
     }
 
