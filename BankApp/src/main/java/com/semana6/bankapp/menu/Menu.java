@@ -179,7 +179,7 @@ public class Menu {
             System.out.print("\nDigite o valor que deseja withdraw: ");
             String withdraw = scanner.nextLine();
 
-            erro = validator.isWithdrawalValid(withdraw, loggedInAccount);
+            erro = validator.isWithdrawlValid(withdraw, loggedInAccount);
 
             if(erro != null) {
                 System.out.println(erro);
