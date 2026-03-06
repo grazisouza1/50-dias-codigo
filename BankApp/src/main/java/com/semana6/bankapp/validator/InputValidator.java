@@ -41,6 +41,11 @@ public class InputValidator {
         if(input.trim().length() != 11){
             return "\nO campo deve ter 11 caracteres\n";
         }
+
+        if (input.matches(".*[a-zA-Z]+.*")) {
+            return "\nEsse campo não pode conter letras\n";
+        }
+
         return null;
     }
 
@@ -51,6 +56,10 @@ public class InputValidator {
 
         if(input.length() != 11){
             return "\nO cpf deve ter 11 números\n";
+        }
+
+        if (input.matches(".*[a-zA-Z]+.*")) {
+            return "\nEsse campo não pode conter letras\n";
         }
 
         return null;
