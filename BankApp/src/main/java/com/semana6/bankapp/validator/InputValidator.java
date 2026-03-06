@@ -2,7 +2,6 @@ package com.semana6.bankapp.validator;
 
 import com.semana6.bankapp.dto.AccountDto;
 
-
 public class InputValidator {
 
     public String isNameValid(String input){

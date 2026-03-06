@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 @Component
 public class Menu {
+    //Inicialização de variáveis
     InputValidator validator = new InputValidator();
     Scanner scanner = new Scanner(System.in);
 
@@ -70,11 +71,11 @@ public class Menu {
                     break;
             }
         }
-        while (erro != null) ;
+        while (erro != null);
     }
 
     public Integer processRegisterInput(String input) {
-        if (input.isBlank()){
+        if (input.isBlank()) {
             System.out.println("O campo não pode ser vazio");
             return null;
         }
@@ -82,13 +83,13 @@ public class Menu {
         try {
             int inputInt = Integer.parseInt(input);
 
-            if(inputInt > 5 || inputInt < 0){
+            if (inputInt > 2 || inputInt < 0) {
                 System.out.println("\nA opção deve ser um número existente no menu de opções\n");
                 return null;
             }
 
             return inputInt;
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("\nA opção deve ser um número\n");
             return null;
         }
@@ -102,14 +103,16 @@ public class Menu {
 
         System.out.println("\n===== Faça seu login =====\n");
 
+        //Vai repetir o/os loops até o email e a senha serem válidos
         do {
+            //Existe um do para email e um para senha, para que, caso o email esteja errado, o usuário não precise por a senha
             do {
                 System.out.print("Digite seu email: ");
                 loginEmail = scanner.nextLine().trim();
 
                 erro = validator.isEmailValid(loginEmail);
 
-                if (erro != null){
+                if (erro != null) {
                     System.out.println("\nEmail inválido, insira novamente\n");
                 }
             } while (erro != null);
@@ -120,7 +123,7 @@ public class Menu {
 
                 erro = validator.isPasswordValid(loginSenha);
 
-                if (erro != null){
+                if (erro != null) {
                     System.out.println("\nSenha inválida, insira novamente\n");
                 }
             } while (erro != null);
@@ -145,7 +148,7 @@ public class Menu {
         System.out.println("R$" + loggedInAccount.getBalance());
     }
 
-    public void deposit() throws SQLException{
+    public void deposit() throws SQLException {
         String erro;
         float floatDeposit;
 
@@ -155,7 +158,7 @@ public class Menu {
 
             erro = validator.isDepositValid(deposito);
 
-            if (erro != null){
+            if (erro != null) {
                 System.out.println(erro);
             }
 
@@ -165,7 +168,6 @@ public class Menu {
         float newBalance = loggedInAccount.getBalance() + floatDeposit;
 
         loggedInAccount.setBalance(newBalance);
-
         accountDao.updateBalance(loggedInAccount.getId(), newBalance);
 
         System.out.println("\nO valor de R$" + floatDeposit + " foi adicionado à sua conta\n");
@@ -181,7 +183,7 @@ public class Menu {
 
             erro = validator.isWithdrawlValid(withdraw, loggedInAccount);
 
-            if(erro != null) {
+            if (erro != null) {
                 System.out.println(erro);
             }
 
@@ -197,44 +199,47 @@ public class Menu {
 
     }
 
-    public void transfer() throws SQLException{
+    public void transfer() throws SQLException {
         String transferAnswer;
 
         try {
             System.out.print("\nInsira o telefone da conta para qual deseja transferir: ");
             String phone = scanner.nextLine();
 
+            //Busca o customer pelo número do telefone (Coluna da tabela customers)
             CustomerDto beneficiaryData = customerDao.searchCustomerByPhone(phone);
+            //Pega o id do customer encontrado pelo telefone, e usa para achar a conta associada a ele
             AccountDto beneficiaryAccount = accountDao.searchAccountByCustomerId(beneficiaryData.getId());
 
-                System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
-                transferAnswer = scanner.nextLine().trim();
+            //Confirmação de transferência
+            System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
+            transferAnswer = scanner.nextLine().trim();
 
-                if (!transferAnswer.equals("s") && !transferAnswer.equals("n")) {
-                    System.out.print("Selecione uma opção válida (s ou n)");
-                    return;
+            if (!transferAnswer.equals("s") && !transferAnswer.equals("n")) {
+                System.out.print("Selecione uma opção válida (s ou n)");
+                return;
+            }
+
+            if (transferAnswer.equals("s")) {
+                System.out.print("\nDigite o valor que deseja transferir: ");
+                String transferValue = scanner.nextLine();
+
+                try {
+                    Float transferValueFormated = Float.parseFloat(transferValue);
+
+                    Float newWithdraw = beneficiaryAccount.getBalance() + transferValueFormated;
+                    beneficiaryAccount.setBalance(newWithdraw);
+                    accountDao.updateBalance(beneficiaryAccount.getId(), newWithdraw);
+
+                    System.out.println("\nValor de R$" + transferValueFormated + " transferido para " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "\n");
+                } catch (NumberFormatException e) {
+                    System.out.println(e.getMessage());
                 }
+            } else if (transferAnswer.equals("n")) {
+                return;
+            }
 
-                if (transferAnswer.equals("s")) {
-                    System.out.print("\nDigite o valor que deseja transferir: ");
-                    String transferValue = scanner.nextLine();
-
-                    try {
-                        Float transferValueFormated = Float.parseFloat(transferValue);
-
-                        Float newWithdraw = beneficiaryAccount.getBalance() + transferValueFormated;
-                        beneficiaryAccount.setBalance(newWithdraw);
-                        accountDao.updateBalance(beneficiaryAccount.getId(), newWithdraw);
-
-                        System.out.println("\nValor de R$" + transferValueFormated + " transferido para " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "\n");
-                    } catch (NumberFormatException e){
-                        System.out.println(e.getMessage());
-                    }
-                } else if (transferAnswer.equals("n")) {
-                    return;
-                }
-
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -249,17 +254,19 @@ public class Menu {
 
         String erro;
 
+        //Um loop do while para cada campo que o usuário digitar
+
         do {
             System.out.print("Digite seu primeiro nome: ");
             typedName = scanner.nextLine().trim();
 
             erro = validator.isNameValid(typedName);
 
-            if (erro != null){
+            if (erro != null) {
                 System.out.println(erro);
             }
 
-        } while (erro !=null);
+        } while (erro != null);
 
         do {
             System.out.print("Digite seu sobrenome: ");
@@ -298,7 +305,7 @@ public class Menu {
 
             erro = validator.isPhoneNumberValid(typedPhoneNumber);
 
-            if(erro != null) {
+            if (erro != null) {
                 System.out.println(erro);
             }
         } while (erro != null);
@@ -309,15 +316,15 @@ public class Menu {
 
             erro = validator.isCpfCnpjValid(typedCpfCnpj);
 
-            if (erro != null){
+            if (erro != null) {
                 System.out.println(erro);
                 continue;
             }
 
-            if(customerDao.cpfAlreadyExists(typedCpfCnpj)) {
+            if (customerDao.cpfAlreadyExists(typedCpfCnpj)) {
                 System.out.println("\nCPF/CNPJ já existente\n");
                 erro = "cpf/cnpj existente";
-            } else{
+            } else {
                 erro = null;
             }
         } while (erro != null);
@@ -328,12 +335,13 @@ public class Menu {
 
             erro = validator.isPasswordValid(typedPassword);
 
-            if(erro != null) {
+            if (erro != null) {
                 System.out.println(erro);
             }
 
         } while (erro != null);
 
+        //Cria um objeto customer com todos os dados cadastrados
         CustomerDto objCustomer = new CustomerDto();
         objCustomer.setFirstName(typedName);
         objCustomer.setLastName(typedLastName);
@@ -341,7 +349,6 @@ public class Menu {
         objCustomer.setPhoneNumber(typedPhoneNumber);
         objCustomer.setCpfCnpj(typedCpfCnpj);
         objCustomer.setPassHash(typedPassword);
-
 
         this.loggedInUser = objCustomer;
 
@@ -367,7 +374,8 @@ public class Menu {
 
     public void startApplication() throws SQLException {
         String registerChoice;
-        while(true) {
+
+        while (true) {
             if (loggedInUser == null) {
                 System.out.println("\n========= BEM VINDO AO BANK APP =========");
                 System.out.println("-------- Você já é cadastrado? --------");
@@ -397,28 +405,26 @@ public class Menu {
                                 }
                             } while (!registerChoice.equals("s") && !registerChoice.equals("n"));
 
-                                if (registerChoice.equals("n")) {
-                                    System.out.println("\nSaindo da aplicação\n");
-                                    System.exit(0);
-                                }
-
-                                if (registerChoice.equals("s")) {
-                                    createRegistration();
-                                }
-
-                                break;
-                                default:
-                                    System.out.println("Entrada inválida");
-                                    break;
+                            if (registerChoice.equals("n")) {
+                                System.out.println("\nSaindo da aplicação\n");
+                                System.exit(0);
                             }
-                    } catch(NumberFormatException e){
-                        System.out.println("\nA opção selecionada deve ser um número\n");
-                        return;
+
+                            createRegistration();
+
+                            break;
+                        default:
+                            System.out.println("Entrada inválida");
+                            break;
                     }
-                } else{
-                    displayMenu();
+                } catch (NumberFormatException e) {
+                    System.out.println("\nA opção selecionada deve ser um número\n");
+                    return;
                 }
+            } else {
+                displayMenu();
             }
+        }
 
 
     }
