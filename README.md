@@ -446,3 +446,4 @@ Inclua pelo menos 2 itens dos seguintes:
 | 3   | • Ajuste de retorno de pergunta;<br/>• Finalização da apresentação;<br/>• Atualização do README. | 1 hora |
 | 4   | • Ajuste de tratamento de email e senha;<br• Correção de pedido de login ao cadastrar;<br/>• Formatação e estruturação do código em inglês;<br/>• Atualização do README. | 1 hora e 40 minutos |
 | 5   | • Adição de tratamento de entrada de letras em CpfCnpj e em PhoneNumber;<br/>• Adição de tratamento de entrada de números em Name e LastName;<br/>• Criação de testes para InputValidator;<br/>• Correção de escrita de withdrawl;<br/>• Atualização do README. | 2 horas |
+| 6   | • Adição de comentários;<br/>• Limpeza de código;<br/>• Ajuste da apresentação final;<br/>• Atualização do README. | 1 hora |
