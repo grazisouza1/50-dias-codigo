@@ -33,7 +33,6 @@ public class AccountDao {
 
         Connection conn = new ConexaoDB().connectDB();
 
-        System.out.println("customerId: " + customerId);
         String sql = "SELECT * FROM accounts WHERE customer_id = ?";
 
         try (PreparedStatement psmt = conn.prepareStatement(sql)) {
@@ -47,13 +46,11 @@ public class AccountDao {
                 account.setCustomer_id(rs.getInt("customer_id"));
                 account.setBalance(rs.getFloat("balance"));
 
-                System.out.println(account);
-
                 return account;
             }
         }
 
-        return new AccountDto();
+        return null;
     }
 
     public void updateBalance (int accountId, float novoSaldo) throws SQLException {

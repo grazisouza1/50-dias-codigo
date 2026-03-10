@@ -213,7 +213,6 @@ public class Menu {
 
             //Pega o id do customer encontrado pelo telefone, e usa para achar a conta associada a ele
             AccountDto beneficiaryAccount = accountDao.searchAccountByCustomerId(beneficiaryId);
-            System.out.println(beneficiaryAccount);
 
             //Confirmação de transferência
             System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
