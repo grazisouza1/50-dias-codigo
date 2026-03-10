@@ -178,7 +178,7 @@ public class Menu {
         Float floatWithdraw;
 
         do {
-            System.out.print("\nDigite o valor que deseja withdraw: ");
+            System.out.print("\nDigite o valor que deseja sacar: ");
             String withdraw = scanner.nextLine();
 
             erro = validator.isWithdrawlValid(withdraw, loggedInAccount);
@@ -208,12 +208,17 @@ public class Menu {
 
             //Busca o customer pelo número do telefone (Coluna da tabela customers)
             CustomerDto beneficiaryData = customerDao.searchCustomerByPhone(phone);
+
+            int beneficiaryId = beneficiaryData.getId();
+
             //Pega o id do customer encontrado pelo telefone, e usa para achar a conta associada a ele
-            AccountDto beneficiaryAccount = accountDao.searchAccountByCustomerId(beneficiaryData.getId());
+            AccountDto beneficiaryAccount = accountDao.searchAccountByCustomerId(beneficiaryId);
+            System.out.println(beneficiaryAccount);
 
             //Confirmação de transferência
             System.out.print("\nDeseja transferir para: " + beneficiaryData.getFirstName() + " " + beneficiaryData.getLastName() + "? (s/n)\n");
             transferAnswer = scanner.nextLine().trim();
+
 
             if (!transferAnswer.equals("s") && !transferAnswer.equals("n")) {
                 System.out.print("Selecione uma opção válida (s ou n)");
@@ -224,10 +229,11 @@ public class Menu {
                 System.out.print("\nDigite o valor que deseja transferir: ");
                 String transferValue = scanner.nextLine();
 
-                try {
-                    Float transferValueFormated = Float.parseFloat(transferValue);
 
-                    Float newWithdraw = beneficiaryAccount.getBalance() + transferValueFormated;
+                try {
+                    float transferValueFormated = Float.parseFloat(transferValue);
+
+                    float newWithdraw = beneficiaryAccount.getBalance() + transferValueFormated;
                     beneficiaryAccount.setBalance(newWithdraw);
                     accountDao.updateBalance(beneficiaryAccount.getId(), newWithdraw);
 

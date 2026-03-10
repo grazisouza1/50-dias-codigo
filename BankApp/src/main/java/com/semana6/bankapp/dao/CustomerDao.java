@@ -116,12 +116,12 @@ public class CustomerDao {
             ResultSet rs = pstm.executeQuery();
 
             if (rs.next()) {
-                CustomerDto cliente = new CustomerDto();
-                cliente.setId(rs.getInt("customer_id"));
-                cliente.setPhoneNumber(rs.getString("phone_number"));
-                cliente.setFirstName(rs.getString("first_name"));
-                cliente.setLastName(rs.getString("last_name"));
-                return cliente;
+                CustomerDto customer = new CustomerDto();
+                customer.setId(rs.getInt("customer_id"));
+                customer.setPhoneNumber(rs.getString("phone_number"));
+                customer.setFirstName(rs.getString("first_name"));
+                customer.setLastName(rs.getString("last_name"));
+                return customer;
             }
         }
         return null;
