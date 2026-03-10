@@ -447,3 +447,73 @@ Inclua pelo menos 2 itens dos seguintes:
 | 4   | • Ajuste de tratamento de email e senha;<br• Correção de pedido de login ao cadastrar;<br/>• Formatação e estruturação do código em inglês;<br/>• Atualização do README. | 1 hora e 40 minutos |
 | 5   | • Adição de tratamento de entrada de letras em CpfCnpj e em PhoneNumber;<br/>• Adição de tratamento de entrada de números em Name e LastName;<br/>• Criação de testes para InputValidator;<br/>• Correção de escrita de withdrawl;<br/>• Atualização do README. | 2 horas |
 | 6   | • Adição de comentários;<br/>• Limpeza de código;<br/>• Ajuste da apresentação final;<br/>• Atualização do README. | 1 hora |
+| 7   | • Adicionando comentários;<br/>• Corrigindo pequenas lógicas;<br/>• Gravando vídeos do projeto final;<br/>• Atualização do README. | 1 hora e 30 minutos
+
+<br/>
+
+---
+
+<br/>
+
+<strong>🎥 VÍDEOS DE DEMONSTRAÇÃO</strong>
+
+<br/>
+
+- <strong>Criação de cadastro/Login</strong>
+  - Caso o usuário não tenha cadastro, existe a opção de criar um: &nbsp;
+  
+    ![Gravação de tela de 2026-03-09 06-50-08](https://github.com/user-attachments/assets/6cf9fc59-dfee-4a90-abbb-1df63d8fff4b)
+
+    <br/>
+
+  - Caso o usuário já tenha login: &nbsp;
+    
+    ![Gravação de tela de 2026-03-09 06-52-23](https://github.com/user-attachments/assets/c256994b-6ecc-4d61-bb4b-3cdaf23a3650)
+
+    <br/>
+
+  - Caso o usuário não queira se cadastrar: &nbsp;
+ 
+    ![Gravação de tela de 2026-03-09 06-50-54](https://github.com/user-attachments/assets/cd2380e1-069e-4c23-a3a1-dd8fd88bed2d)
+
+<br/>
+
+- <strong>Menu</strong>
+  - Caso o usuário deseje consultar o saldo: &nbsp;
+  
+  ![saldo](https://github.com/user-attachments/assets/99fa6c18-c4d8-46fa-b338-a3ae29cffeff)
+
+  <br/>
+
+  - Caso o usuário queira depositar: &nbsp;
+ 
+  ![deposito](https://github.com/user-attachments/assets/36f45509-3d2f-41c6-809a-7d453625e2a7)
+
+  <br/>
+
+  - Caso o usuário deseje sacar um valor: &nbsp;
+ 
+  ![saque](https://github.com/user-attachments/assets/dfb8a7b2-2785-42e0-9129-134910c852ff)
+
+  <br/>
+
+  - Caso o usuário deseje transferir um valor: &nbsp;
+ 
+  ![transferir](https://github.com/user-attachments/assets/faa139e9-a434-4a0c-9329-6d2bd1ab917a)
+
+  <br/>
+
+  - Caso o usuário queira sair da aplicação: &nbsp;
+
+  ![sair](https://github.com/user-attachments/assets/4209b791-07e9-4352-8a26-cf5fba503321)
+
+  <br/>
+
+  ---
+
+  <h2>Fim do projeto!</h2>
+
+  O projeto me possibilitou aprender diversas novas coisas sobre java e sobre o fluxo de funcionamento d uma aplicação. Também tive meu primeiro contato com banco de dados de modo prático, e foi uma experiência incrível! Seguimos em frente com os estudos em programação, e muito fliz por ter tido a chance de participar!
+
+<img width="587" height="147" alt="Sem título" src="https://github.com/user-attachments/assets/0ffdd718-a765-4d90-ac15-1e494ef3dfcd" />
+  
