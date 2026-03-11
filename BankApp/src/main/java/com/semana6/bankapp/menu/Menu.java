@@ -232,6 +232,11 @@ public class Menu {
                 try {
                     float transferValueFormated = Float.parseFloat(transferValue);
 
+                    if (loggedInAccount.getBalance() < transferValueFormated) {
+                        System.out.println("\nVocê não tem esse valor na sua conta\n");
+                        return;
+                    }
+
                     float newWithdraw = beneficiaryAccount.getBalance() + transferValueFormated;
                     beneficiaryAccount.setBalance(newWithdraw);
                     accountDao.updateBalance(beneficiaryAccount.getId(), newWithdraw);
